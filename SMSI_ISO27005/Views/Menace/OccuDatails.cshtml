@@ -1,0 +1,48 @@
+﻿@model SMSI_ISO27005.Models.prob_occurrence
+
+@{
+    ViewBag.Title = "OccuDatails";
+    Layout = "~/Views/Shared/_Dashboard.cshtml";
+}
+
+<h2>Occurance Datails</h2>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.LabelFor(model => model.nom_occur,"Nom Occurance")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nom_occur)
+        </dd>
+
+        <dt>
+            @Html.LabelFor(model => model.date_creation_occur, "Date Creation Occurance")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.date_creation_occur)
+        </dd>
+
+        <dt>
+            @Html.LabelFor(model => model.desc_occur, "Description Occurance")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.desc_occur)
+        </dd>
+
+        <dt>
+            @Html.LabelFor(model => model.score_occur, "Score Occurance")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.score_occur)
+        </dd>
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Back to Actifs List", "Index", "Actifs")
+</p>

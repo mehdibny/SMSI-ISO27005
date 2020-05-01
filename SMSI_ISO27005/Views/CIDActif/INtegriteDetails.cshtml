@@ -1,0 +1,48 @@
+﻿@model SMSI_ISO27005.Models.integrite
+
+@{
+    ViewBag.Title = "INtegriteDetails";
+    Layout = "~/Views/Shared/_Dashboard.cshtml";
+}
+
+<h2>Intégrité Details</h2>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.LabelFor(model => model.nom_integ, "Nom Intégrité")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nom_integ)
+        </dd>
+
+        <dt>
+            @Html.LabelFor(model => model.date_creation_integ, "Date Creation Intégrité")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.date_creation_integ)
+        </dd>
+
+        <dt>
+            @Html.LabelFor(model => model.descr_integ, "Description Intégrité")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.descr_integ)
+        </dd>
+
+        <dt>
+            @Html.LabelFor(model => model.score_integd, "Score Intégrité")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.score_integd)
+        </dd>
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Back to Actifs List", "Index", "Actifs")
+</p>

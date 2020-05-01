@@ -1,0 +1,111 @@
+﻿@*@model IPagedList<SMSI_ISO27005.Models.actif>*@
+@model IPagedList<SMSI_ISO27005.ViewModels.CIDActifVM>
+
+@using PagedList.Mvc;
+@using PagedList;
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Dashboard.cshtml";
+}
+
+<h2>Mes Actifs</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table  table-hover">
+    <tr class="thead-dark">
+        <th>
+            @Html.DisplayNameFor(model => model.First().actifDetailles.nom_actif)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.First().actifDetailles.matricule)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.First().actifDetailles.date_creation_actif)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.First().actifDetailles.descr_actif)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.First().actifDetailles.categ_actif)
+        </th>
+        <th></th>
+    </tr>
+    @*@if (Session["CollabFonction"].ToString() == "admin")
+    {*@
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.actifDetailles.nom_actif)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.actifDetailles.matricule)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.actifDetailles.date_creation_actif)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.actifDetailles.descr_actif)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.actifDetailles.categ_actif)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.actifDetailles.id_actif }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.actifDetailles.id_actif }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.actifDetailles.id_actif }) |
+                    @Html.ActionLink("Score", "CID", "CIDActif", new { id = item.actifDetailles.id_actif }, null) |
+                    @*@foreach (var vul in Model)
+                    {
+                        if (vul.actifDetailles.id_actif == vul.vulnerabilteDetailles.id_actif)
+                    {*@
+                            @Html.ActionLink("Menace", "Index", "Menace", new { id = item.actifDetailles.id_actif }, null)
+
+                        @*}
+                        else
+                        {
+                            @Html.ActionLink("Creer Menace", "Create", "Menace", new { id = item.actifDetailles.id_actif }, null)
+
+                        }
+                    }*@
+                    
+                </td>
+            </tr>
+        }
+    @*}
+    else
+    {
+        foreach (var item in Model.Where(x => x.collaborateurDetailles.matricule == Session["UserMatricule"].ToString()))
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.actifDetailles.nom_actif)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.actifDetailles.matricule)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.actifDetailles.date_creation_actif)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.actifDetailles.descr_actif)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.actifDetailles.categ_actif)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.actifDetailles.id_actif }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.actifDetailles.id_actif }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.actifDetailles.id_actif }) |
+                    @Html.ActionLink("Score", "CID", "CIDActif", new { id = item.actifDetailles.id_actif }, null) |
+                    @Html.ActionLink("Menace", "Index", "Menace", new { id = item.actifDetailles.id_actif }, null)
+                </td>
+            </tr>
+        }
+    }*@
+
+</table>
+<nav aria-label="Page navigation example">@Html.PagedListPager(Model, i => Url.Action("Index", "Actifs", new {i, search = Request.QueryString["search"]}))</nav>
+

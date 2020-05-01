@@ -1,0 +1,48 @@
+﻿@model SMSI_ISO27005.Models.confid
+
+@{
+    ViewBag.Title = "ConfidDetails";
+    Layout = "~/Views/Shared/_Dashboard.cshtml";
+}
+
+<h2>Confidentialité Details</h2>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.LabelFor(model => model.nom_confid, "Nom Confidentialité")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nom_confid)
+        </dd>
+
+        <dt>
+            @Html.LabelFor(model => model.date_creation_confid, "Date Creation Confidentialité")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.date_creation_confid)
+        </dd>
+
+        <dt>
+            @Html.LabelFor(model => model.descr_confid, "Description Confidentialité")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.descr_confid)
+        </dd>
+
+        <dt>
+            @Html.LabelFor(model => model.score_confid, "Score Confidentialité")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.score_confid)
+        </dd>
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Back to Actifs List", "Index","Actifs")
+</p>

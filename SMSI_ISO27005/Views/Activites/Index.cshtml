@@ -1,0 +1,51 @@
+﻿@*@model IPagedList< SMSI_ISO27005.Models.activite >*@
+@model IPagedList<SMSI_ISO27005.ViewModels.CIDActifVM>
+
+@using PagedList.Mvc;
+@using PagedList;
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Dashboard.cshtml";
+
+}
+
+<h2>Mes Activites</h2>
+
+<p>
+    @Html.ActionLink("Ajouter Une Activite", "Create")
+</p>
+<table class="table  table-hover">
+    <tr class="thead-dark">
+        <th>
+            @Html.DisplayNameFor(model => model.First().activiteDetaillese.nom_activite)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.First().activiteDetaillese.date_creation)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.First().activiteDetaillese.matricule)
+        </th>
+        <th></th>
+    </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.activiteDetaillese.nom_activite)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.activiteDetaillese.date_creation)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.activiteDetaillese.matricule)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new {id = item.activiteDetaillese.id_activite }) |
+                    @Html.ActionLink("Details", "Details", new {id = item.activiteDetaillese.id_activite }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.activiteDetaillese.id_activite }) |
+                    @Html.ActionLink("Mes Actifs", "Actifs","CIDActif",new {id = item.activiteDetaillese.id_activite },null)
+                </td>
+            </tr>
+        }
+</table>
+<nav aria-label="Page navigation example">@Html.PagedListPager(Model, i => Url.Action("Index", "Activites", new { i, search = Request.QueryString["search"] }))</nav>

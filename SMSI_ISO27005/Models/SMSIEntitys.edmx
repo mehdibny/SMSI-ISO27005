@@ -1,0 +1,1042 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="SMSIModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="actif">
+          <Key>
+            <PropertyRef Name="id_actif" />
+          </Key>
+          <Property Name="id_actif" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nom_actif" Type="varchar" MaxLength="25" />
+          <Property Name="date_creation_actif" Type="datetime" />
+          <Property Name="descr_actif" Type="varchar" MaxLength="75" />
+          <Property Name="categ_actif" Type="varchar" MaxLength="15" />
+          <Property Name="matricule" Type="varchar" MaxLength="15" />
+        </EntityType>
+        <EntityType Name="action">
+          <Key>
+            <PropertyRef Name="id_action" />
+          </Key>
+          <Property Name="id_action" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nom_action" Type="varchar" MaxLength="50" />
+          <Property Name="description_action" Type="varchar" MaxLength="50" />
+          <Property Name="échéance" Type="varchar" MaxLength="50" />
+          <Property Name="etat_avancement" Type="varchar" MaxLength="50" />
+          <Property Name="commentaire" Type="varchar" MaxLength="50" />
+          <Property Name="matricule_responable" Type="varchar" MaxLength="15" />
+          <Property Name="id_gestion_risk" Type="int" />
+          <Property Name="date_creation" Type="date" />
+        </EntityType>
+        <EntityType Name="activite">
+          <Key>
+            <PropertyRef Name="id_activite" />
+          </Key>
+          <Property Name="id_activite" Type="int" Nullable="false" />
+          <Property Name="nom_activite" Type="varchar" MaxLength="25" />
+          <Property Name="date_creation" Type="datetime" />
+          <Property Name="matricule" Type="varchar" MaxLength="15" />
+        </EntityType>
+        <EntityType Name="CID_actif">
+          <Key>
+            <PropertyRef Name="id_activite" />
+            <PropertyRef Name="id_actif" />
+          </Key>
+          <Property Name="id_activite" Type="int" Nullable="false" />
+          <Property Name="id_actif" Type="int" Nullable="false" />
+          <Property Name="id_confid" Type="int" />
+          <Property Name="id_integ" Type="int" />
+          <Property Name="id_dispo" Type="int" />
+        </EntityType>
+        <EntityType Name="collaborateur">
+          <Key>
+            <PropertyRef Name="matricule" />
+          </Key>
+          <Property Name="matricule" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="nom" Type="varchar" MaxLength="25" />
+          <Property Name="prenom" Type="varchar" MaxLength="25" />
+          <Property Name="fonction" Type="varchar" MaxLength="25" />
+          <Property Name="CIN" Type="varchar" MaxLength="11" />
+          <Property Name="Email" Type="varchar" MaxLength="25" />
+          <Property Name="Date Naissance" Type="date" />
+          <Property Name="Adresse" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="confid">
+          <Key>
+            <PropertyRef Name="id_confi" />
+          </Key>
+          <Property Name="id_confi" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nom_confid" Type="varchar" MaxLength="25" />
+          <Property Name="date_creation_confid" Type="datetime" />
+          <Property Name="descr_confid" Type="varchar" MaxLength="75" />
+          <Property Name="score_confid" Type="varchar" MaxLength="15" />
+        </EntityType>
+        <EntityType Name="disponibilte">
+          <Key>
+            <PropertyRef Name="id_dispo" />
+          </Key>
+          <Property Name="id_dispo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nom_dispo" Type="varchar" MaxLength="25" />
+          <Property Name="date_creation_dispo" Type="datetime" />
+          <Property Name="descr_dispo" Type="varchar" MaxLength="75" />
+          <Property Name="score_dispo" Type="varchar" MaxLength="15" />
+        </EntityType>
+        <EntityType Name="gestion_risque">
+          <Key>
+            <PropertyRef Name="id_gestion_risk" />
+          </Key>
+          <Property Name="id_gestion_risk" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nom_gesion_risk" Type="varchar" MaxLength="50" />
+          <Property Name="description_gestion_risk" Type="varchar" MaxLength="50" />
+          <Property Name="date_creation_g_risk" Type="date" />
+          <Property Name="risk_dicision" Type="varchar" MaxLength="50" />
+          <Property Name="id_vulne" Type="int" />
+        </EntityType>
+        <EntityType Name="impact">
+          <Key>
+            <PropertyRef Name="id_impact" />
+          </Key>
+          <Property Name="id_impact" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nom_impact" Type="varchar" MaxLength="25" />
+          <Property Name="date_creation_impact" Type="datetime" />
+          <Property Name="descr_impact" Type="varchar" MaxLength="75" />
+          <Property Name="score_impact" Type="int" />
+          <Property Name="id_menace" Type="int" />
+        </EntityType>
+        <EntityType Name="integrite">
+          <Key>
+            <PropertyRef Name="id_integ" />
+          </Key>
+          <Property Name="id_integ" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nom_integ" Type="varchar" MaxLength="25" />
+          <Property Name="date_creation_integ" Type="datetime" />
+          <Property Name="descr_integ" Type="varchar" MaxLength="75" />
+          <Property Name="score_integd" Type="varchar" MaxLength="15" />
+        </EntityType>
+        <EntityType Name="menace">
+          <Key>
+            <PropertyRef Name="id_menace" />
+          </Key>
+          <Property Name="id_menace" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nom_menace" Type="varchar" MaxLength="25" />
+          <Property Name="date_creation_menace" Type="datetime" />
+          <Property Name="desc_menace" Type="varchar" MaxLength="25" />
+          <Property Name="id_vulne" Type="int" />
+        </EntityType>
+        <EntityType Name="prob_occurrence">
+          <Key>
+            <PropertyRef Name="id_occur" />
+          </Key>
+          <Property Name="id_occur" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nom_occur" Type="varchar" MaxLength="25" />
+          <Property Name="date_creation_occur" Type="datetime" />
+          <Property Name="desc_occur" Type="varchar" MaxLength="25" />
+          <Property Name="score_occur" Type="int" />
+          <Property Name="id_menace" Type="int" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="user_table">
+          <Key>
+            <PropertyRef Name="matricule" />
+          </Key>
+          <Property Name="matricule" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="username" Type="varchar" MaxLength="25" />
+          <Property Name="passeword" Type="varchar" MaxLength="25" />
+        </EntityType>
+        <EntityType Name="vulnerabilte">
+          <Key>
+            <PropertyRef Name="id_vulne" />
+          </Key>
+          <Property Name="id_vulne" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nom_vulne" Type="varchar" MaxLength="25" />
+          <Property Name="date_creation_vulne" Type="datetime" />
+          <Property Name="desc_vulne" Type="varchar" MaxLength="25" />
+          <Property Name="id_actif" Type="int" />
+        </EntityType>
+        <Association Name="FK__actif__matricule__01142BA1">
+          <End Role="collaborateur" Type="Self.collaborateur" Multiplicity="0..1" />
+          <End Role="actif" Type="Self.actif" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="collaborateur">
+              <PropertyRef Name="matricule" />
+            </Principal>
+            <Dependent Role="actif">
+              <PropertyRef Name="matricule" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__activite__matric__1273C1CD">
+          <End Role="collaborateur" Type="Self.collaborateur" Multiplicity="0..1" />
+          <End Role="activite" Type="Self.activite" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="collaborateur">
+              <PropertyRef Name="matricule" />
+            </Principal>
+            <Dependent Role="activite">
+              <PropertyRef Name="matricule" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__CID_actif__id_ac__20C1E124">
+          <End Role="activite" Type="Self.activite" Multiplicity="1" />
+          <End Role="CID_actif" Type="Self.CID_actif" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="activite">
+              <PropertyRef Name="id_activite" />
+            </Principal>
+            <Dependent Role="CID_actif">
+              <PropertyRef Name="id_activite" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__CID_actif__id_ac__21B6055D">
+          <End Role="actif" Type="Self.actif" Multiplicity="1" />
+          <End Role="CID_actif" Type="Self.CID_actif" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="actif">
+              <PropertyRef Name="id_actif" />
+            </Principal>
+            <Dependent Role="CID_actif">
+              <PropertyRef Name="id_actif" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__CID_actif__id_co__22AA2996">
+          <End Role="confid" Type="Self.confid" Multiplicity="0..1" />
+          <End Role="CID_actif" Type="Self.CID_actif" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="confid">
+              <PropertyRef Name="id_confi" />
+            </Principal>
+            <Dependent Role="CID_actif">
+              <PropertyRef Name="id_confid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__CID_actif__id_di__25869641">
+          <End Role="disponibilte" Type="Self.disponibilte" Multiplicity="0..1" />
+          <End Role="CID_actif" Type="Self.CID_actif" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="disponibilte">
+              <PropertyRef Name="id_dispo" />
+            </Principal>
+            <Dependent Role="CID_actif">
+              <PropertyRef Name="id_dispo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__CID_actif__id_in__239E4DCF">
+          <End Role="integrite" Type="Self.integrite" Multiplicity="0..1" />
+          <End Role="CID_actif" Type="Self.CID_actif" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="integrite">
+              <PropertyRef Name="id_integ" />
+            </Principal>
+            <Dependent Role="CID_actif">
+              <PropertyRef Name="id_integ" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__impact__id_menac__2E1BDC42">
+          <End Role="menace" Type="Self.menace" Multiplicity="0..1" />
+          <End Role="impact" Type="Self.impact" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="menace">
+              <PropertyRef Name="id_menace" />
+            </Principal>
+            <Dependent Role="impact">
+              <PropertyRef Name="id_menace" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__menace__id_vulne__2B3F6F97">
+          <End Role="vulnerabilte" Type="Self.vulnerabilte" Multiplicity="0..1" />
+          <End Role="menace" Type="Self.menace" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="vulnerabilte">
+              <PropertyRef Name="id_vulne" />
+            </Principal>
+            <Dependent Role="menace">
+              <PropertyRef Name="id_vulne" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__prob_occu__id_me__30F848ED">
+          <End Role="menace" Type="Self.menace" Multiplicity="0..1" />
+          <End Role="prob_occurrence" Type="Self.prob_occurrence" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="menace">
+              <PropertyRef Name="id_menace" />
+            </Principal>
+            <Dependent Role="prob_occurrence">
+              <PropertyRef Name="id_menace" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__user_tabl__matri__6FE99F9F">
+          <End Role="collaborateur" Type="Self.collaborateur" Multiplicity="1" />
+          <End Role="user_table" Type="Self.user_table" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="collaborateur">
+              <PropertyRef Name="matricule" />
+            </Principal>
+            <Dependent Role="user_table">
+              <PropertyRef Name="matricule" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__vulnerabi__id_ac__286302EC">
+          <End Role="actif" Type="Self.actif" Multiplicity="0..1" />
+          <End Role="vulnerabilte" Type="Self.vulnerabilte" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="actif">
+              <PropertyRef Name="id_actif" />
+            </Principal>
+            <Dependent Role="vulnerabilte">
+              <PropertyRef Name="id_actif" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_action_gestion_risque">
+          <End Role="gestion_risque" Type="Self.gestion_risque" Multiplicity="0..1" />
+          <End Role="action" Type="Self.action" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="gestion_risque">
+              <PropertyRef Name="id_gestion_risk" />
+            </Principal>
+            <Dependent Role="action">
+              <PropertyRef Name="id_gestion_risk" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_gestion_risque_gestion_risque">
+          <End Role="vulnerabilte" Type="Self.vulnerabilte" Multiplicity="0..1" />
+          <End Role="gestion_risque" Type="Self.gestion_risque" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="vulnerabilte">
+              <PropertyRef Name="id_vulne" />
+            </Principal>
+            <Dependent Role="gestion_risque">
+              <PropertyRef Name="id_vulne" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="SMSIModelStoreContainer">
+          <EntitySet Name="actif" EntityType="Self.actif" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="action" EntityType="Self.action" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="activite" EntityType="Self.activite" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CID_actif" EntityType="Self.CID_actif" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="collaborateur" EntityType="Self.collaborateur" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="confid" EntityType="Self.confid" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="disponibilte" EntityType="Self.disponibilte" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="gestion_risque" EntityType="Self.gestion_risque" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="impact" EntityType="Self.impact" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="integrite" EntityType="Self.integrite" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="menace" EntityType="Self.menace" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="prob_occurrence" EntityType="Self.prob_occurrence" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="user_table" EntityType="Self.user_table" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="vulnerabilte" EntityType="Self.vulnerabilte" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__actif__matricule__01142BA1" Association="Self.FK__actif__matricule__01142BA1">
+            <End Role="collaborateur" EntitySet="collaborateur" />
+            <End Role="actif" EntitySet="actif" />
+          </AssociationSet>
+          <AssociationSet Name="FK__activite__matric__1273C1CD" Association="Self.FK__activite__matric__1273C1CD">
+            <End Role="collaborateur" EntitySet="collaborateur" />
+            <End Role="activite" EntitySet="activite" />
+          </AssociationSet>
+          <AssociationSet Name="FK__CID_actif__id_ac__20C1E124" Association="Self.FK__CID_actif__id_ac__20C1E124">
+            <End Role="activite" EntitySet="activite" />
+            <End Role="CID_actif" EntitySet="CID_actif" />
+          </AssociationSet>
+          <AssociationSet Name="FK__CID_actif__id_ac__21B6055D" Association="Self.FK__CID_actif__id_ac__21B6055D">
+            <End Role="actif" EntitySet="actif" />
+            <End Role="CID_actif" EntitySet="CID_actif" />
+          </AssociationSet>
+          <AssociationSet Name="FK__CID_actif__id_co__22AA2996" Association="Self.FK__CID_actif__id_co__22AA2996">
+            <End Role="confid" EntitySet="confid" />
+            <End Role="CID_actif" EntitySet="CID_actif" />
+          </AssociationSet>
+          <AssociationSet Name="FK__CID_actif__id_di__25869641" Association="Self.FK__CID_actif__id_di__25869641">
+            <End Role="disponibilte" EntitySet="disponibilte" />
+            <End Role="CID_actif" EntitySet="CID_actif" />
+          </AssociationSet>
+          <AssociationSet Name="FK__CID_actif__id_in__239E4DCF" Association="Self.FK__CID_actif__id_in__239E4DCF">
+            <End Role="integrite" EntitySet="integrite" />
+            <End Role="CID_actif" EntitySet="CID_actif" />
+          </AssociationSet>
+          <AssociationSet Name="FK__impact__id_menac__2E1BDC42" Association="Self.FK__impact__id_menac__2E1BDC42">
+            <End Role="menace" EntitySet="menace" />
+            <End Role="impact" EntitySet="impact" />
+          </AssociationSet>
+          <AssociationSet Name="FK__menace__id_vulne__2B3F6F97" Association="Self.FK__menace__id_vulne__2B3F6F97">
+            <End Role="vulnerabilte" EntitySet="vulnerabilte" />
+            <End Role="menace" EntitySet="menace" />
+          </AssociationSet>
+          <AssociationSet Name="FK__prob_occu__id_me__30F848ED" Association="Self.FK__prob_occu__id_me__30F848ED">
+            <End Role="menace" EntitySet="menace" />
+            <End Role="prob_occurrence" EntitySet="prob_occurrence" />
+          </AssociationSet>
+          <AssociationSet Name="FK__user_tabl__matri__6FE99F9F" Association="Self.FK__user_tabl__matri__6FE99F9F">
+            <End Role="collaborateur" EntitySet="collaborateur" />
+            <End Role="user_table" EntitySet="user_table" />
+          </AssociationSet>
+          <AssociationSet Name="FK__vulnerabi__id_ac__286302EC" Association="Self.FK__vulnerabi__id_ac__286302EC">
+            <End Role="actif" EntitySet="actif" />
+            <End Role="vulnerabilte" EntitySet="vulnerabilte" />
+          </AssociationSet>
+          <AssociationSet Name="FK_action_gestion_risque" Association="Self.FK_action_gestion_risque">
+            <End Role="gestion_risque" EntitySet="gestion_risque" />
+            <End Role="action" EntitySet="action" />
+          </AssociationSet>
+          <AssociationSet Name="FK_gestion_risque_gestion_risque" Association="Self.FK_gestion_risque_gestion_risque">
+            <End Role="vulnerabilte" EntitySet="vulnerabilte" />
+            <End Role="gestion_risque" EntitySet="gestion_risque" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="SMSIModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="actif">
+          <Key>
+            <PropertyRef Name="id_actif" />
+          </Key>
+          <Property Name="id_actif" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nom_actif" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="date_creation_actif" Type="DateTime" Precision="3" />
+          <Property Name="descr_actif" Type="String" MaxLength="75" FixedLength="false" Unicode="false" />
+          <Property Name="categ_actif" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="CID_actif" Relationship="Self.FK__CID_actif__id_ac__21B6055D" FromRole="actif" ToRole="CID_actif" />
+          <NavigationProperty Name="vulnerabilte" Relationship="Self.FK__vulnerabi__id_ac__286302EC" FromRole="actif" ToRole="vulnerabilte" />
+          <Property Name="matricule" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="collaborateur" Relationship="SMSIModel.FK__actif__matricule__01142BA1" FromRole="actif" ToRole="collaborateur" />
+        </EntityType>
+        <EntityType Name="activite">
+          <Key>
+            <PropertyRef Name="id_activite" />
+          </Key>
+          <Property Name="id_activite" Type="Int32" Nullable="false" />
+          <Property Name="nom_activite" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="date_creation" Type="DateTime" Precision="3" />
+          <Property Name="matricule" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="collaborateur" Relationship="Self.FK__activite__matric__1273C1CD" FromRole="activite" ToRole="collaborateur" />
+          <NavigationProperty Name="CID_actif" Relationship="Self.FK__CID_actif__id_ac__20C1E124" FromRole="activite" ToRole="CID_actif" />
+        </EntityType>
+        <EntityType Name="CID_actif">
+          <Key>
+            <PropertyRef Name="id_activite" />
+            <PropertyRef Name="id_actif" />
+          </Key>
+          <Property Name="id_activite" Type="Int32" Nullable="false" />
+          <Property Name="id_actif" Type="Int32" Nullable="false" />
+          <Property Name="id_confid" Type="Int32" />
+          <Property Name="id_integ" Type="Int32" />
+          <Property Name="id_dispo" Type="Int32" />
+          <NavigationProperty Name="actif" Relationship="Self.FK__CID_actif__id_ac__21B6055D" FromRole="CID_actif" ToRole="actif" />
+          <NavigationProperty Name="activite" Relationship="Self.FK__CID_actif__id_ac__20C1E124" FromRole="CID_actif" ToRole="activite" />
+          <NavigationProperty Name="confid" Relationship="Self.FK__CID_actif__id_co__22AA2996" FromRole="CID_actif" ToRole="confid" />
+          <NavigationProperty Name="disponibilte" Relationship="Self.FK__CID_actif__id_di__25869641" FromRole="CID_actif" ToRole="disponibilte" />
+          <NavigationProperty Name="integrite" Relationship="Self.FK__CID_actif__id_in__239E4DCF" FromRole="CID_actif" ToRole="integrite" />
+        </EntityType>
+        <EntityType Name="collaborateur">
+          <Key>
+            <PropertyRef Name="matricule" />
+          </Key>
+          <Property Name="matricule" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="nom" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="prenom" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="fonction" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="CIN" Type="String" MaxLength="11" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="activite" Relationship="Self.FK__activite__matric__1273C1CD" FromRole="collaborateur" ToRole="activite" />
+          <NavigationProperty Name="user_table" Relationship="Self.FK__user_tabl__matri__6FE99F9F" FromRole="collaborateur" ToRole="user_table" />
+          <Property Name="Email" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="Date_Naissance" Type="DateTime" Precision="0" />
+          <Property Name="Adresse" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="actif" Relationship="SMSIModel.FK__actif__matricule__01142BA1" FromRole="collaborateur" ToRole="actif" />
+        </EntityType>
+        <EntityType Name="confid">
+          <Key>
+            <PropertyRef Name="id_confi" />
+          </Key>
+          <Property Name="id_confi" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nom_confid" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="date_creation_confid" Type="DateTime" Precision="3" />
+          <Property Name="descr_confid" Type="String" MaxLength="75" FixedLength="false" Unicode="false" />
+          <Property Name="score_confid" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="CID_actif" Relationship="Self.FK__CID_actif__id_co__22AA2996" FromRole="confid" ToRole="CID_actif" />
+        </EntityType>
+        <EntityType Name="disponibilte">
+          <Key>
+            <PropertyRef Name="id_dispo" />
+          </Key>
+          <Property Name="id_dispo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nom_dispo" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="date_creation_dispo" Type="DateTime" Precision="3" />
+          <Property Name="descr_dispo" Type="String" MaxLength="75" FixedLength="false" Unicode="false" />
+          <Property Name="score_dispo" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="CID_actif" Relationship="Self.FK__CID_actif__id_di__25869641" FromRole="disponibilte" ToRole="CID_actif" />
+        </EntityType>
+        <EntityType Name="impact">
+          <Key>
+            <PropertyRef Name="id_impact" />
+          </Key>
+          <Property Name="id_impact" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nom_impact" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="date_creation_impact" Type="DateTime" Precision="3" />
+          <Property Name="descr_impact" Type="String" MaxLength="75" FixedLength="false" Unicode="false" />
+          <Property Name="score_impact" Type="Int32" />
+          <Property Name="id_menace" Type="Int32" />
+          <NavigationProperty Name="menace" Relationship="Self.FK__impact__id_menac__2E1BDC42" FromRole="impact" ToRole="menace" />
+        </EntityType>
+        <EntityType Name="integrite">
+          <Key>
+            <PropertyRef Name="id_integ" />
+          </Key>
+          <Property Name="id_integ" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nom_integ" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="date_creation_integ" Type="DateTime" Precision="3" />
+          <Property Name="descr_integ" Type="String" MaxLength="75" FixedLength="false" Unicode="false" />
+          <Property Name="score_integd" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="CID_actif" Relationship="Self.FK__CID_actif__id_in__239E4DCF" FromRole="integrite" ToRole="CID_actif" />
+        </EntityType>
+        <EntityType Name="menace">
+          <Key>
+            <PropertyRef Name="id_menace" />
+          </Key>
+          <Property Name="id_menace" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nom_menace" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="date_creation_menace" Type="DateTime" Precision="3" />
+          <Property Name="desc_menace" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="id_vulne" Type="Int32" />
+          <NavigationProperty Name="impact" Relationship="Self.FK__impact__id_menac__2E1BDC42" FromRole="menace" ToRole="impact" />
+          <NavigationProperty Name="vulnerabilte" Relationship="Self.FK__menace__id_vulne__2B3F6F97" FromRole="menace" ToRole="vulnerabilte" />
+          <NavigationProperty Name="prob_occurrence" Relationship="Self.FK__prob_occu__id_me__30F848ED" FromRole="menace" ToRole="prob_occurrence" />
+        </EntityType>
+        <EntityType Name="prob_occurrence">
+          <Key>
+            <PropertyRef Name="id_occur" />
+          </Key>
+          <Property Name="id_occur" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nom_occur" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="date_creation_occur" Type="DateTime" Precision="3" />
+          <Property Name="desc_occur" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="score_occur" Type="Int32" />
+          <Property Name="id_menace" Type="Int32" />
+          <NavigationProperty Name="menace" Relationship="Self.FK__prob_occu__id_me__30F848ED" FromRole="prob_occurrence" ToRole="menace" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="user_table">
+          <Key>
+            <PropertyRef Name="matricule" />
+          </Key>
+          <Property Name="matricule" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="username" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="passeword" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="collaborateur" Relationship="Self.FK__user_tabl__matri__6FE99F9F" FromRole="user_table" ToRole="collaborateur" />
+        </EntityType>
+        <EntityType Name="vulnerabilte">
+          <Key>
+            <PropertyRef Name="id_vulne" />
+          </Key>
+          <Property Name="id_vulne" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nom_vulne" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="date_creation_vulne" Type="DateTime" Precision="3" />
+          <Property Name="desc_vulne" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="id_actif" Type="Int32" />
+          <NavigationProperty Name="actif" Relationship="Self.FK__vulnerabi__id_ac__286302EC" FromRole="vulnerabilte" ToRole="actif" />
+          <NavigationProperty Name="menace" Relationship="Self.FK__menace__id_vulne__2B3F6F97" FromRole="vulnerabilte" ToRole="menace" />
+          <NavigationProperty Name="gestion_risque" Relationship="SMSIModel.FK_gestion_risque_gestion_risque" FromRole="vulnerabilte" ToRole="gestion_risque" />
+        </EntityType>
+        <Association Name="FK__CID_actif__id_ac__21B6055D">
+          <End Role="actif" Type="Self.actif" Multiplicity="1" />
+          <End Role="CID_actif" Type="Self.CID_actif" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="actif">
+              <PropertyRef Name="id_actif" />
+            </Principal>
+            <Dependent Role="CID_actif">
+              <PropertyRef Name="id_actif" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__vulnerabi__id_ac__286302EC">
+          <End Role="actif" Type="Self.actif" Multiplicity="0..1" />
+          <End Role="vulnerabilte" Type="Self.vulnerabilte" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="actif">
+              <PropertyRef Name="id_actif" />
+            </Principal>
+            <Dependent Role="vulnerabilte">
+              <PropertyRef Name="id_actif" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__activite__matric__1273C1CD">
+          <End Role="collaborateur" Type="Self.collaborateur" Multiplicity="0..1" />
+          <End Role="activite" Type="Self.activite" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="collaborateur">
+              <PropertyRef Name="matricule" />
+            </Principal>
+            <Dependent Role="activite">
+              <PropertyRef Name="matricule" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__CID_actif__id_ac__20C1E124">
+          <End Role="activite" Type="Self.activite" Multiplicity="1" />
+          <End Role="CID_actif" Type="Self.CID_actif" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="activite">
+              <PropertyRef Name="id_activite" />
+            </Principal>
+            <Dependent Role="CID_actif">
+              <PropertyRef Name="id_activite" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__CID_actif__id_co__22AA2996">
+          <End Role="confid" Type="Self.confid" Multiplicity="0..1" />
+          <End Role="CID_actif" Type="Self.CID_actif" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="confid">
+              <PropertyRef Name="id_confi" />
+            </Principal>
+            <Dependent Role="CID_actif">
+              <PropertyRef Name="id_confid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__CID_actif__id_di__25869641">
+          <End Role="disponibilte" Type="Self.disponibilte" Multiplicity="0..1" />
+          <End Role="CID_actif" Type="Self.CID_actif" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="disponibilte">
+              <PropertyRef Name="id_dispo" />
+            </Principal>
+            <Dependent Role="CID_actif">
+              <PropertyRef Name="id_dispo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__CID_actif__id_in__239E4DCF">
+          <End Role="integrite" Type="Self.integrite" Multiplicity="0..1" />
+          <End Role="CID_actif" Type="Self.CID_actif" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="integrite">
+              <PropertyRef Name="id_integ" />
+            </Principal>
+            <Dependent Role="CID_actif">
+              <PropertyRef Name="id_integ" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__user_tabl__matri__6FE99F9F">
+          <End Role="collaborateur" Type="Self.collaborateur" Multiplicity="1" />
+          <End Role="user_table" Type="Self.user_table" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="collaborateur">
+              <PropertyRef Name="matricule" />
+            </Principal>
+            <Dependent Role="user_table">
+              <PropertyRef Name="matricule" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__impact__id_menac__2E1BDC42">
+          <End Role="menace" Type="Self.menace" Multiplicity="0..1" />
+          <End Role="impact" Type="Self.impact" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="menace">
+              <PropertyRef Name="id_menace" />
+            </Principal>
+            <Dependent Role="impact">
+              <PropertyRef Name="id_menace" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__menace__id_vulne__2B3F6F97">
+          <End Role="vulnerabilte" Type="Self.vulnerabilte" Multiplicity="0..1" />
+          <End Role="menace" Type="Self.menace" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="vulnerabilte">
+              <PropertyRef Name="id_vulne" />
+            </Principal>
+            <Dependent Role="menace">
+              <PropertyRef Name="id_vulne" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__prob_occu__id_me__30F848ED">
+          <End Role="menace" Type="Self.menace" Multiplicity="0..1" />
+          <End Role="prob_occurrence" Type="Self.prob_occurrence" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="menace">
+              <PropertyRef Name="id_menace" />
+            </Principal>
+            <Dependent Role="prob_occurrence">
+              <PropertyRef Name="id_menace" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="SMSIEntities1" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="actif" EntityType="Self.actif" />
+          <EntitySet Name="activite" EntityType="Self.activite" />
+          <EntitySet Name="CID_actif" EntityType="Self.CID_actif" />
+          <EntitySet Name="collaborateur" EntityType="Self.collaborateur" />
+          <EntitySet Name="confid" EntityType="Self.confid" />
+          <EntitySet Name="disponibilte" EntityType="Self.disponibilte" />
+          <EntitySet Name="impact" EntityType="Self.impact" />
+          <EntitySet Name="integrite" EntityType="Self.integrite" />
+          <EntitySet Name="menace" EntityType="Self.menace" />
+          <EntitySet Name="prob_occurrence" EntityType="Self.prob_occurrence" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <EntitySet Name="user_table" EntityType="Self.user_table" />
+          <EntitySet Name="vulnerabilte" EntityType="Self.vulnerabilte" />
+          <AssociationSet Name="FK__CID_actif__id_ac__21B6055D" Association="Self.FK__CID_actif__id_ac__21B6055D">
+            <End Role="actif" EntitySet="actif" />
+            <End Role="CID_actif" EntitySet="CID_actif" />
+          </AssociationSet>
+          <AssociationSet Name="FK__vulnerabi__id_ac__286302EC" Association="Self.FK__vulnerabi__id_ac__286302EC">
+            <End Role="actif" EntitySet="actif" />
+            <End Role="vulnerabilte" EntitySet="vulnerabilte" />
+          </AssociationSet>
+          <AssociationSet Name="FK__activite__matric__1273C1CD" Association="Self.FK__activite__matric__1273C1CD">
+            <End Role="collaborateur" EntitySet="collaborateur" />
+            <End Role="activite" EntitySet="activite" />
+          </AssociationSet>
+          <AssociationSet Name="FK__CID_actif__id_ac__20C1E124" Association="Self.FK__CID_actif__id_ac__20C1E124">
+            <End Role="activite" EntitySet="activite" />
+            <End Role="CID_actif" EntitySet="CID_actif" />
+          </AssociationSet>
+          <AssociationSet Name="FK__CID_actif__id_co__22AA2996" Association="Self.FK__CID_actif__id_co__22AA2996">
+            <End Role="confid" EntitySet="confid" />
+            <End Role="CID_actif" EntitySet="CID_actif" />
+          </AssociationSet>
+          <AssociationSet Name="FK__CID_actif__id_di__25869641" Association="Self.FK__CID_actif__id_di__25869641">
+            <End Role="disponibilte" EntitySet="disponibilte" />
+            <End Role="CID_actif" EntitySet="CID_actif" />
+          </AssociationSet>
+          <AssociationSet Name="FK__CID_actif__id_in__239E4DCF" Association="Self.FK__CID_actif__id_in__239E4DCF">
+            <End Role="integrite" EntitySet="integrite" />
+            <End Role="CID_actif" EntitySet="CID_actif" />
+          </AssociationSet>
+          <AssociationSet Name="FK__user_tabl__matri__6FE99F9F" Association="Self.FK__user_tabl__matri__6FE99F9F">
+            <End Role="collaborateur" EntitySet="collaborateur" />
+            <End Role="user_table" EntitySet="user_table" />
+          </AssociationSet>
+          <AssociationSet Name="FK__impact__id_menac__2E1BDC42" Association="Self.FK__impact__id_menac__2E1BDC42">
+            <End Role="menace" EntitySet="menace" />
+            <End Role="impact" EntitySet="impact" />
+          </AssociationSet>
+          <AssociationSet Name="FK__menace__id_vulne__2B3F6F97" Association="Self.FK__menace__id_vulne__2B3F6F97">
+            <End Role="vulnerabilte" EntitySet="vulnerabilte" />
+            <End Role="menace" EntitySet="menace" />
+          </AssociationSet>
+          <AssociationSet Name="FK__prob_occu__id_me__30F848ED" Association="Self.FK__prob_occu__id_me__30F848ED">
+            <End Role="menace" EntitySet="menace" />
+            <End Role="prob_occurrence" EntitySet="prob_occurrence" />
+          </AssociationSet>
+          <AssociationSet Name="FK__actif__matricule__01142BA1" Association="SMSIModel.FK__actif__matricule__01142BA1">
+            <End Role="collaborateur" EntitySet="collaborateur" />
+            <End Role="actif" EntitySet="actif" />
+          </AssociationSet>
+          <EntitySet Name="action" EntityType="SMSIModel.action" />
+          <EntitySet Name="gestion_risque" EntityType="SMSIModel.gestion_risque" />
+          <AssociationSet Name="FK_action_gestion_risque" Association="SMSIModel.FK_action_gestion_risque">
+            <End Role="gestion_risque" EntitySet="gestion_risque" />
+            <End Role="action" EntitySet="action" />
+          </AssociationSet>
+          <AssociationSet Name="FK_gestion_risque_gestion_risque" Association="SMSIModel.FK_gestion_risque_gestion_risque">
+            <End Role="vulnerabilte" EntitySet="vulnerabilte" />
+            <End Role="gestion_risque" EntitySet="gestion_risque" />
+          </AssociationSet>
+          </EntityContainer>
+        <Association Name="FK__actif__matricule__01142BA1">
+          <End Type="SMSIModel.collaborateur" Role="collaborateur" Multiplicity="0..1" />
+          <End Type="SMSIModel.actif" Role="actif" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="collaborateur">
+              <PropertyRef Name="matricule" />
+            </Principal>
+            <Dependent Role="actif">
+              <PropertyRef Name="matricule" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="action">
+          <Key>
+            <PropertyRef Name="id_action" />
+          </Key>
+          <Property Name="id_action" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nom_action" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="description_action" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="échéance" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="etat_avancement" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="commentaire" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="matricule_responable" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="id_gestion_risk" Type="Int32" />
+          <NavigationProperty Name="gestion_risque" Relationship="SMSIModel.FK_action_gestion_risque" FromRole="action" ToRole="gestion_risque" />
+          <Property Name="date_creation" Type="DateTime" Precision="0" />
+        </EntityType>
+        <EntityType Name="gestion_risque">
+          <Key>
+            <PropertyRef Name="id_gestion_risk" />
+          </Key>
+          <Property Name="id_gestion_risk" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nom_gesion_risk" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="description_gestion_risk" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="date_creation_g_risk" Type="DateTime" Precision="0" />
+          <Property Name="risk_dicision" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="id_vulne" Type="Int32" />
+          <NavigationProperty Name="action" Relationship="SMSIModel.FK_action_gestion_risque" FromRole="gestion_risque" ToRole="action" />
+          <NavigationProperty Name="vulnerabilte" Relationship="SMSIModel.FK_gestion_risque_gestion_risque" FromRole="gestion_risque" ToRole="vulnerabilte" />
+        </EntityType>
+        <Association Name="FK_action_gestion_risque">
+          <End Type="SMSIModel.gestion_risque" Role="gestion_risque" Multiplicity="0..1" />
+          <End Type="SMSIModel.action" Role="action" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="gestion_risque">
+              <PropertyRef Name="id_gestion_risk" />
+            </Principal>
+            <Dependent Role="action">
+              <PropertyRef Name="id_gestion_risk" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_gestion_risque_gestion_risque">
+          <End Type="SMSIModel.vulnerabilte" Role="vulnerabilte" Multiplicity="0..1" />
+          <End Type="SMSIModel.gestion_risque" Role="gestion_risque" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="vulnerabilte">
+              <PropertyRef Name="id_vulne" />
+            </Principal>
+            <Dependent Role="gestion_risque">
+              <PropertyRef Name="id_vulne" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="SMSIModelStoreContainer" CdmEntityContainer="SMSIEntities1">
+          <EntitySetMapping Name="actif">
+            <EntityTypeMapping TypeName="SMSIModel.actif">
+              <MappingFragment StoreEntitySet="actif">
+                <ScalarProperty Name="matricule" ColumnName="matricule" />
+                <ScalarProperty Name="id_actif" ColumnName="id_actif" />
+                <ScalarProperty Name="nom_actif" ColumnName="nom_actif" />
+                <ScalarProperty Name="date_creation_actif" ColumnName="date_creation_actif" />
+                <ScalarProperty Name="descr_actif" ColumnName="descr_actif" />
+                <ScalarProperty Name="categ_actif" ColumnName="categ_actif" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="activite">
+            <EntityTypeMapping TypeName="SMSIModel.activite">
+              <MappingFragment StoreEntitySet="activite">
+                <ScalarProperty Name="id_activite" ColumnName="id_activite" />
+                <ScalarProperty Name="nom_activite" ColumnName="nom_activite" />
+                <ScalarProperty Name="date_creation" ColumnName="date_creation" />
+                <ScalarProperty Name="matricule" ColumnName="matricule" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CID_actif">
+            <EntityTypeMapping TypeName="SMSIModel.CID_actif">
+              <MappingFragment StoreEntitySet="CID_actif">
+                <ScalarProperty Name="id_activite" ColumnName="id_activite" />
+                <ScalarProperty Name="id_actif" ColumnName="id_actif" />
+                <ScalarProperty Name="id_confid" ColumnName="id_confid" />
+                <ScalarProperty Name="id_integ" ColumnName="id_integ" />
+                <ScalarProperty Name="id_dispo" ColumnName="id_dispo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="collaborateur">
+            <EntityTypeMapping TypeName="SMSIModel.collaborateur">
+              <MappingFragment StoreEntitySet="collaborateur">
+                <ScalarProperty Name="Adresse" ColumnName="Adresse" />
+                <ScalarProperty Name="Date_Naissance" ColumnName="Date Naissance" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="matricule" ColumnName="matricule" />
+                <ScalarProperty Name="nom" ColumnName="nom" />
+                <ScalarProperty Name="prenom" ColumnName="prenom" />
+                <ScalarProperty Name="fonction" ColumnName="fonction" />
+                <ScalarProperty Name="CIN" ColumnName="CIN" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="confid">
+            <EntityTypeMapping TypeName="SMSIModel.confid">
+              <MappingFragment StoreEntitySet="confid">
+                <ScalarProperty Name="id_confi" ColumnName="id_confi" />
+                <ScalarProperty Name="nom_confid" ColumnName="nom_confid" />
+                <ScalarProperty Name="date_creation_confid" ColumnName="date_creation_confid" />
+                <ScalarProperty Name="descr_confid" ColumnName="descr_confid" />
+                <ScalarProperty Name="score_confid" ColumnName="score_confid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="disponibilte">
+            <EntityTypeMapping TypeName="SMSIModel.disponibilte">
+              <MappingFragment StoreEntitySet="disponibilte">
+                <ScalarProperty Name="id_dispo" ColumnName="id_dispo" />
+                <ScalarProperty Name="nom_dispo" ColumnName="nom_dispo" />
+                <ScalarProperty Name="date_creation_dispo" ColumnName="date_creation_dispo" />
+                <ScalarProperty Name="descr_dispo" ColumnName="descr_dispo" />
+                <ScalarProperty Name="score_dispo" ColumnName="score_dispo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="impact">
+            <EntityTypeMapping TypeName="SMSIModel.impact">
+              <MappingFragment StoreEntitySet="impact">
+                <ScalarProperty Name="id_impact" ColumnName="id_impact" />
+                <ScalarProperty Name="nom_impact" ColumnName="nom_impact" />
+                <ScalarProperty Name="date_creation_impact" ColumnName="date_creation_impact" />
+                <ScalarProperty Name="descr_impact" ColumnName="descr_impact" />
+                <ScalarProperty Name="score_impact" ColumnName="score_impact" />
+                <ScalarProperty Name="id_menace" ColumnName="id_menace" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="integrite">
+            <EntityTypeMapping TypeName="SMSIModel.integrite">
+              <MappingFragment StoreEntitySet="integrite">
+                <ScalarProperty Name="id_integ" ColumnName="id_integ" />
+                <ScalarProperty Name="nom_integ" ColumnName="nom_integ" />
+                <ScalarProperty Name="date_creation_integ" ColumnName="date_creation_integ" />
+                <ScalarProperty Name="descr_integ" ColumnName="descr_integ" />
+                <ScalarProperty Name="score_integd" ColumnName="score_integd" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="menace">
+            <EntityTypeMapping TypeName="SMSIModel.menace">
+              <MappingFragment StoreEntitySet="menace">
+                <ScalarProperty Name="id_menace" ColumnName="id_menace" />
+                <ScalarProperty Name="nom_menace" ColumnName="nom_menace" />
+                <ScalarProperty Name="date_creation_menace" ColumnName="date_creation_menace" />
+                <ScalarProperty Name="desc_menace" ColumnName="desc_menace" />
+                <ScalarProperty Name="id_vulne" ColumnName="id_vulne" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="prob_occurrence">
+            <EntityTypeMapping TypeName="SMSIModel.prob_occurrence">
+              <MappingFragment StoreEntitySet="prob_occurrence">
+                <ScalarProperty Name="id_occur" ColumnName="id_occur" />
+                <ScalarProperty Name="nom_occur" ColumnName="nom_occur" />
+                <ScalarProperty Name="date_creation_occur" ColumnName="date_creation_occur" />
+                <ScalarProperty Name="desc_occur" ColumnName="desc_occur" />
+                <ScalarProperty Name="score_occur" ColumnName="score_occur" />
+                <ScalarProperty Name="id_menace" ColumnName="id_menace" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="SMSIModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="user_table">
+            <EntityTypeMapping TypeName="SMSIModel.user_table">
+              <MappingFragment StoreEntitySet="user_table">
+                <ScalarProperty Name="matricule" ColumnName="matricule" />
+                <ScalarProperty Name="username" ColumnName="username" />
+                <ScalarProperty Name="passeword" ColumnName="passeword" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vulnerabilte">
+            <EntityTypeMapping TypeName="SMSIModel.vulnerabilte">
+              <MappingFragment StoreEntitySet="vulnerabilte">
+                <ScalarProperty Name="id_vulne" ColumnName="id_vulne" />
+                <ScalarProperty Name="nom_vulne" ColumnName="nom_vulne" />
+                <ScalarProperty Name="date_creation_vulne" ColumnName="date_creation_vulne" />
+                <ScalarProperty Name="desc_vulne" ColumnName="desc_vulne" />
+                <ScalarProperty Name="id_actif" ColumnName="id_actif" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="action">
+            <EntityTypeMapping TypeName="SMSIModel.action">
+              <MappingFragment StoreEntitySet="action">
+                <ScalarProperty Name="date_creation" ColumnName="date_creation" />
+                <ScalarProperty Name="id_gestion_risk" ColumnName="id_gestion_risk" />
+                <ScalarProperty Name="matricule_responable" ColumnName="matricule_responable" />
+                <ScalarProperty Name="commentaire" ColumnName="commentaire" />
+                <ScalarProperty Name="etat_avancement" ColumnName="etat_avancement" />
+                <ScalarProperty Name="échéance" ColumnName="échéance" />
+                <ScalarProperty Name="description_action" ColumnName="description_action" />
+                <ScalarProperty Name="nom_action" ColumnName="nom_action" />
+                <ScalarProperty Name="id_action" ColumnName="id_action" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="gestion_risque">
+            <EntityTypeMapping TypeName="SMSIModel.gestion_risque">
+              <MappingFragment StoreEntitySet="gestion_risque">
+                <ScalarProperty Name="id_vulne" ColumnName="id_vulne" />
+                <ScalarProperty Name="risk_dicision" ColumnName="risk_dicision" />
+                <ScalarProperty Name="date_creation_g_risk" ColumnName="date_creation_g_risk" />
+                <ScalarProperty Name="description_gestion_risk" ColumnName="description_gestion_risk" />
+                <ScalarProperty Name="nom_gesion_risk" ColumnName="nom_gesion_risk" />
+                <ScalarProperty Name="id_gestion_risk" ColumnName="id_gestion_risk" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Aucun" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

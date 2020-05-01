@@ -1,0 +1,106 @@
+﻿@model SMSI_ISO27005.ViewModels.CIDActifVM
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Dashboard.cshtml";
+}
+
+<h2>Creer </h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>Vulnerabilite & Menace</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            <div class="col-md-10 text-center mr-auto">
+                @Html.DropDownListFor(model => model.actifDetailles.id_actif, ViewBag.actifList as SelectList, "Veuillez Sélectioner Un Actif", new {@class = "btn btn-secondary  dropdown-toggle"@*,@disabled = "disabled"*@})
+               <br /> @Html.ValidationMessageFor(model => model.actifDetailles.id_actif, null, new { @class = "text-danger" })
+                @*@Html.DisplayFor(model => model.vulnerabilteDetailles.errorMessage, new { @class = "text-danger" })*@
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.vulnerabilteDetailles.nom_vulne,"Vulnerabilite", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.vulnerabilteDetailles.nom_vulne, new { @class = "form-control", @placeholder = "Name" })
+                @Html.ValidationMessageFor(model => model.vulnerabilteDetailles.nom_vulne, null, new { @class = "text-danger" })
+                
+
+                @Html.TextAreaFor(model => model.vulnerabilteDetailles.desc_vulne, new { @class = "form-control", @placeholder = "Discription" })
+                @Html.ValidationMessageFor(model => model.vulnerabilteDetailles.desc_vulne, null, new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.menaceDetailles.nom_menace,"Menace", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.menaceDetailles.nom_menace, new { @class = "form-control", @placeholder = "Name" })
+                @Html.ValidationMessageFor(model => model.menaceDetailles.nom_menace, null, new { @class = "text-danger" })
+
+                @Html.TextAreaFor(model => model.menaceDetailles.desc_menace, new { @class = "form-control", @placeholder = "Discription" })
+                @Html.ValidationMessageFor(model => model.menaceDetailles.desc_menace, null, new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.impactDetailles.nom_impact,"Impact", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.impactDetailles.nom_impact, new { @class = "form-control", @placeholder = "Name" })
+                @Html.ValidationMessageFor(model => model.impactDetailles.nom_impact, null, new { @class = "text-danger" })
+
+                @Html.TextAreaFor(model => model.impactDetailles.descr_impact, new { @class = "form-control", @placeholder = "Discription" })
+                @Html.ValidationMessageFor(model => model.impactDetailles.descr_impact, null, new { @class = "text-danger" })
+
+
+                @Html.TextBoxFor(model => model.impactDetailles.score_impact, new { @class = "form-control", @placeholder = "Score" })
+                @Html.ValidationMessageFor(model => model.impactDetailles.score_impact, null, new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.probOccurrenceDetailles.nom_occur,"Probalite D'Occurance", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.probOccurrenceDetailles.nom_occur, new { @class = "form-control", @placeholder = "Name" })
+                @Html.ValidationMessageFor(model => model.probOccurrenceDetailles.nom_occur, null, new { @class = "text-danger" })
+
+                @Html.TextAreaFor(model => model.probOccurrenceDetailles.desc_occur, new { @class = "form-control", @placeholder = "Discription" })
+                @Html.ValidationMessageFor(model => model.probOccurrenceDetailles.desc_occur, null, new { @class = "text-danger" })
+
+
+                @Html.TextBoxFor(model => model.probOccurrenceDetailles.score_occur, new { @class = "form-control", @placeholder = "Score" })
+                @Html.ValidationMessageFor(model => model.probOccurrenceDetailles.score_occur, null, new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-primary" id="done" />
+            </div>
+        </div>
+    </div>
+    <div>
+        @Html.ActionLink("Back to Menace List", "Index", "Menace")
+    </div>
+    <script src="~/Content/vendor/jquery/jquery.min.js"></script>
+    @*<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>*@
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+
+                <link href="~/Content/sweetalert/sweet-alert.css" rel="stylesheet" />
+                <script type="text/javascript">
+                    var successMessage = '@TempData["errorMessage"]'
+                   
+                        if (successMessage == "Bien Ajoute") {
+
+                            //alert(successMessage);
+                            swal.fire(successMessage, "Merci", "success")
+
+                        }
+                        if (successMessage == "Nope") {
+                            swal.fire({ icon: 'error', title: 'Veuillez Remplicez Les Champs', text: 'Les Champs Est Obligatoire' })
+
+                        }
+                    
+                    
+                </script>
+}

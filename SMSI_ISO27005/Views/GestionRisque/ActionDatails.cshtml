@@ -1,0 +1,64 @@
+﻿@model SMSI_ISO27005.Models.action
+
+@{
+    ViewBag.Title = "Impact Datails";
+    Layout = "~/Views/Shared/_Dashboard.cshtml";
+}
+
+<h2>Action Datails</h2>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.LabelFor(model => model.nom_action, "Nom Action")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nom_action)
+        </dd>
+
+        <dt>
+            @Html.LabelFor(model => model.date_creation, "Date Creation Action")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.date_creation)
+        </dd>
+
+        <dt>
+            @Html.LabelFor(model => model.échéance, "échéance")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.échéance)
+        </dd>
+
+        <dt>
+            @Html.LabelFor(model => model.etat_avancement, "Etat D'avencement")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.etat_avancement)
+        </dd>
+
+        <dt>
+            @Html.LabelFor(model => model.commentaire,"Commentaire")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.commentaire)
+        </dd>
+        <dt>
+            @Html.LabelFor(model => model.matricule_responable, "Responsable")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.matricule_responable)
+        </dd>
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Modifier","ActionEdit", "GestionRisque", new { id = Model.id_action },null) |
+    @Html.ActionLink("Retour à Gestion Des Risque", "Index", "GestionRisque")
+</p>

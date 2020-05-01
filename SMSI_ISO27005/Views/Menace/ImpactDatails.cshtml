@@ -1,0 +1,56 @@
+﻿@model SMSI_ISO27005.Models.impact
+
+@{
+    ViewBag.Title = "Impact Datails";
+    Layout = "~/Views/Shared/_Dashboard.cshtml";
+}
+
+<h2>ImpactDatails</h2>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.LabelFor(model => model.nom_impact,"Nom Imapct")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nom_impact)
+        </dd>
+
+        <dt>
+            @Html.LabelFor(model => model.date_creation_impact,"Date Creation Impact")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.date_creation_impact)
+        </dd>
+
+        <dt>
+            @Html.LabelFor(model => model.descr_impact,"Description Impact")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.descr_impact)
+        </dd>
+
+        <dt>
+            @Html.LabelFor(model => model.score_impact,"Score Impact")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.score_impact)
+        </dd>
+
+        @*<dt>
+            @Html.LabelFor(model => model.id_menace,"Menace")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.id_menace)
+        </dd>*@
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Back to Actifs List", "Index", "Menace")
+</p>

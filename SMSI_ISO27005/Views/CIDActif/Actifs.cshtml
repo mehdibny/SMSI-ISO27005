@@ -1,0 +1,45 @@
+﻿@model IPagedList<SMSI_ISO27005.ViewModels.CIDActifVM>
+@using PagedList.Mvc;
+@using PagedList;
+@{
+    ViewBag.Title = "CID";
+    Layout = "~/Views/Shared/_Dashboard.cshtml";
+}
+
+<h2>List D'actifes Par Activites</h2>
+
+<table class="table table-hover">
+    <tr class="thead-dark">
+        <th>Nom Activite</th>
+        <th>Matricule Collaborateur</th>
+        <th>Nom Actif</th>
+        <th>Date Creation Actif</th>
+        <th>Description Actif</th>
+        <th>Categorie Actif</th>
+        <th>Score CID</th>
+    </tr>
+    @foreach (var item in Model)
+    {
+
+
+        int sum = @item.confidDetailles.score_confid.AsInt() + @item.integriteDetailles.score_integd.AsInt() + @item.disponibilteDetailles.score_dispo.AsInt();
+        <tr>
+
+            <td>@Html.ActionLink(item.activiteDetaillese.nom_activite, "Details", "Activites", new { id = item.activiteDetaillese.id_activite }, null)</td>
+            <td>@item.collaborateurDetailles.matricule</td>
+            <td>@Html.ActionLink(@item.actifDetailles.nom_actif, "Details", "actifs", new { id = item.actifDetailles.id_actif }, null)</td>
+            <td>@item.actifDetailles.date_creation_actif</td>
+            <td>@item.actifDetailles.descr_actif</td>
+            <td>@item.actifDetailles.categ_actif</td>
+            <td>@sum</td>
+        </tr>
+        
+
+
+
+    }
+    <td>@Html.ActionLink("Mes Activite", "index", "activites")</td>
+
+</table>
+
+<nav aria-label="Page navigation example">@Html.PagedListPager(Model, i => Url.Action("Actifs", "CIDActif", new { i, search = Request.QueryString["search"] }))</nav>

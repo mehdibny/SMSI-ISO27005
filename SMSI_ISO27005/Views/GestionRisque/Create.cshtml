@@ -1,0 +1,93 @@
+﻿@model SMSI_ISO27005.ViewModels.CIDActifVM
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Dashboard.cshtml";
+}
+
+<h2>Creer </h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>Gestion Des Risque & Action</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            <div class="col-md-10 text-center mr-auto">
+                @Html.DropDownListFor(model => model.vulnerabilteDetailles.id_vulne, ViewBag.vulnList as SelectList, "Veuillez Sélectioner Une Vunlirabilite", new
+           {
+               @class = "btn btn-secondary  dropdown-toggle"@*,@disabled = "disabled"*@})
+                <br />  @Html.ValidationMessageFor(model => model.vulnerabilteDetailles.id_vulne, null, new { @class = "text-danger" })
+                @*@Html.DisplayFor(model => model.vulnerabilteDetailles.errorMessage, new { @class = "text-danger" })*@
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.gestionDetailles.nom_gesion_risk, "Gestion Du Risque", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.gestionDetailles.nom_gesion_risk, new { @class = "form-control", @placeholder = "Nom" })
+                @Html.ValidationMessageFor(model => model.gestionDetailles.nom_gesion_risk, null, new { @class = "text-danger" })
+
+
+                @Html.TextAreaFor(model => model.gestionDetailles.description_gestion_risk, new { @class = "form-control", @placeholder = "Discription" })
+                @Html.ValidationMessageFor(model => model.gestionDetailles.description_gestion_risk, null, new { @class = "text-danger" })
+
+                @Html.TextBoxFor(model => model.gestionDetailles.risk_dicision, new { @class = "form-control", @placeholder = "Risque Dicision" })
+                @Html.ValidationMessageFor(model => model.gestionDetailles.risk_dicision, null, new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.actionDetailles.nom_action, "Action", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.actionDetailles.nom_action, new { @class = "form-control", @placeholder = "Nom" })
+                @Html.ValidationMessageFor(model => model.actionDetailles.nom_action, null, new { @class = "text-danger" })
+
+                @Html.TextAreaFor(model => model.actionDetailles.description_action, new { @class = "form-control", @placeholder = "Discription" })
+                @Html.ValidationMessageFor(model => model.actionDetailles.description_action, null, new { @class = "text-danger" })
+
+                @Html.TextBoxFor(model => model.actionDetailles.échéance, new { @class = "form-control", @placeholder = "échéance" })
+                @Html.ValidationMessageFor(model => model.actionDetailles.échéance, null, new { @class = "text-danger" })
+
+                @Html.TextBoxFor(model => model.actionDetailles.etat_avancement, new { @class = "form-control", @placeholder = "Etat D'avencemnt" })
+                @Html.ValidationMessageFor(model => model.actionDetailles.etat_avancement, null, new { @class = "text-danger" })
+
+                @Html.TextAreaFor(model => model.actionDetailles.commentaire, new { @class = "form-control", @placeholder = "Commentaire" })
+                @Html.ValidationMessageFor(model => model.actionDetailles.commentaire, null, new { @class = "text-danger" })
+            </div>
+        </div>
+
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-primary" id="done" />
+            </div>
+        </div>
+    <div>
+        @Html.ActionLink("Back to Menace List", "Index", "Menace")
+    </div>
+    <script src="~/Content/vendor/jquery/jquery.min.js"></script>
+    @*<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>*@
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+
+    <link href="~/Content/sweetalert/sweet-alert.css" rel="stylesheet" />
+                <script type="text/javascript">
+                    var successMessage = '@TempData["SucccesMessage"]'
+
+                    if (successMessage == "Bien Ajouter") {
+
+                            //alert(successMessage);
+                            swal.fire(successMessage, "Merci", "success")
+
+                        }
+                    else if (successMessage == "Plus")
+                        {
+                        swal.fire({ icon: 'error', title: 'Vous Pouvez Pas Ajouter', text: 'Cette Vuln A Trois Actions' })
+
+                        }
+
+
+                </script>
+}

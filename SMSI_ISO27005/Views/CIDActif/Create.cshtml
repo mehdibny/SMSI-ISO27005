@@ -1,0 +1,112 @@
+﻿@model SMSI_ISO27005.ViewModels.CIDActifVM
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Dashboard.cshtml";
+}
+
+<h2>Creer Un Score CID</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>@*Creer Un Score CID*@</h4>
+        <hr/>
+        @Html.ValidationSummary(true, "", new {@class = "text-danger"})
+        <div class="form-group">
+            <div class="col-md-10 text-center mr-auto">
+
+
+                @Html.DropDownListFor(model => model.activiteDetaillese.id_activite,ViewBag.activiteList as SelectList, "Veuillez Sélectioner Une Activite", new { @class = "btn btn-secondary  dropdown-toggle"})
+                  @*@Html.ValidationMessageFor(m => m.activiteDetaillese.id_activite,null, new { @class = "text-danger" })*@
+                @Html.DisplayFor(model => model.CIDDetailles.errorMessage, new { @class = "text-danger" })
+
+
+                @Html.DropDownListFor(model => model.actifDetailles.id_actif,ViewBag.actifList as SelectList, "Veuillez Sélectioner Un Actif", new {@class = "btn btn-secondary  dropdown-toggle"@*,@disabled = "disabled"*@})
+                <br />  @Html.ValidationMessageFor(m => m.actifDetailles.id_actif, null, new { @class = "text-danger" })
+                @Html.DisplayFor(model => model.CIDDetailles.errorMessage, new { @class = "text-danger" })
+
+
+
+
+
+            
+            </div>
+        </div>
+        
+        <div class="form-group">
+            @Html.LabelFor(model => model.confidDetailles.nom_confid,"Confidentalite :", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.confidDetailles.nom_confid, new { @class = "form-control", @placeholder = "Name" })
+                @Html.ValidationMessageFor(m => m.confidDetailles.nom_confid, null, new { @class = "text-danger" })
+
+                @Html.TextAreaFor(model => model.confidDetailles.descr_confid, new { @class = "form-control", @placeholder = "Discription" })
+                @Html.ValidationMessageFor(m => m.confidDetailles.descr_confid, null, new { @class = "text-danger" })
+
+
+                @Html.TextBoxFor(model => model.confidDetailles.score_confid, new { @class = "form-control", @placeholder = "Score" })
+                @Html.ValidationMessageFor(m => m.confidDetailles.score_confid, null, new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.integriteDetailles.nom_integ, "Integrite",htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.integriteDetailles.nom_integ, new { @class = "form-control", @placeholder = "Name" })
+                @Html.ValidationMessageFor(m => m.integriteDetailles.nom_integ, null, new { @class = "text-danger" })
+
+
+                @Html.TextAreaFor(model => model.integriteDetailles.descr_integ, new { @class = "form-control", @placeholder = "Discription" })
+                @Html.ValidationMessageFor(m => m.integriteDetailles.descr_integ, null, new { @class = "text-danger" })
+
+
+                @Html.TextBoxFor(model => model.integriteDetailles.score_integd, new { @class = "form-control", @placeholder = "Score" })
+                @Html.ValidationMessageFor(m => m.integriteDetailles.score_integd, null, new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.disponibilteDetailles.nom_dispo, "Disponibilite",htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.disponibilteDetailles.nom_dispo, new { @class = "form-control", @placeholder = "Name" })
+                @Html.ValidationMessageFor(m => m.disponibilteDetailles.nom_dispo, null, new { @class = "text-danger" })
+
+                @Html.TextAreaFor(model => model.disponibilteDetailles.descr_dispo, new { @class = "form-control", @placeholder = "Discription" })
+                @Html.ValidationMessageFor(m => m.disponibilteDetailles.descr_dispo, null, new { @class = "text-danger" })
+
+
+                @Html.TextBoxFor(model => model.disponibilteDetailles.score_dispo, new { @class = "form-control", @placeholder = "Score" })
+                @Html.ValidationMessageFor(m => m.disponibilteDetailles.score_dispo,null, new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </div>
+    </div>
+        <div>
+            @Html.ActionLink("Back to Actif List", "Index","actifs")
+        </div>
+        <script src="~/Content/vendor/jquery/jquery.min.js"></script>
+        @*<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>*@
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+
+        <link href="~/Content/sweetalert/sweet-alert.css" rel="stylesheet" />
+        <script type="text/javascript">
+                    var successMessage = '@TempData["SucccesMessage"]'
+                    if (successMessage == "Bien Ajouter") {
+
+                            //alert(successMessage);
+                            swal.fire(successMessage, "Merci", "success")
+
+                        }
+                    else if (successMessage == "Nope")
+                        {
+                        swal.fire({ icon: 'error', title: 'Vous Pouvez Pas Ajouter', text: 'Element Deja Existant' })
+
+                        }
+
+
+        </script>
+}

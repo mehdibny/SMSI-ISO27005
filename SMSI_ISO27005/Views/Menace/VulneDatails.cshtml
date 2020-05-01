@@ -1,0 +1,40 @@
+﻿@model SMSI_ISO27005.Models.vulnerabilte
+
+@{
+    ViewBag.Title = "VulneDatails";
+    Layout = "~/Views/Shared/_Dashboard.cshtml";
+}
+
+<h2>Vulnerabulite Datails</h2>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.LabelFor(model => model.nom_vulne, "Nom Vulnirabilite")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nom_vulne)
+        </dd>
+
+        <dt>
+            @Html.LabelFor(model => model.date_creation_vulne, "Date Creation Vulnirabilite")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.date_creation_vulne)
+        </dd>
+
+        <dt>
+            @Html.LabelFor(model => model.desc_vulne,"Description Vulnirabilite")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.desc_vulne)
+        </dd>
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Back to Actifs List", "Index", "Actifs")
+</p>

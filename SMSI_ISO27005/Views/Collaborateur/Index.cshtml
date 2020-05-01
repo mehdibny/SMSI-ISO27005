@@ -1,0 +1,86 @@
+﻿@model IEnumerable<SMSI_ISO27005.Models.collaborateur>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Dashboard.cshtml";
+}
+
+
+@*<p>
+    @Html.ActionLink("Create New", "Create")
+</p>*@
+<div id="content-wrapper" class="d-flex flex-column">
+
+    <!-- Begin Page Content -->
+    <div class="container-fluid">
+
+        <!-- Page Heading -->
+        <h1 class="h3 mb-4 text-gray-800">Mon Profile</h1>
+        <form method="get">
+            @foreach (var item in Model.Where(x => x.matricule == Session["UserMatricule"].ToString()))
+            {
+                Session["CollabFonction"] = item.fonction;
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="inputMatricule">Matricule</label>
+                        @*@Html.DisplayNameFor(model => model.matricule)*@
+                        <input type="text" class="form-control" id="inputMatricule" value="@Html.DisplayFor(modelItem => item.matricule)" readonly="">
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="inputPassword4">Password</label>
+                        <input type="password" class="form-control" id="inputPassword4" value="@Session["UserPass"].ToString()" readonly="">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="inputNom">Nom</label>
+                        @*@Html.DisplayNameFor(model => model.nom)*@
+                        <input type="text" class="form-control" value="@Html.DisplayFor(modelItem => item.nom)" id="inputNom" readonly="">
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="InputPrenom">Prenom</label>
+                        @*@Html.DisplayNameFor(model => model.prenom)*@
+                        <input type="text" class="form-control" value="@Html.DisplayFor(modelItem => item.prenom)" id="InputPrenom" readonly="">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="inputFucnction">Fonction</label>
+                        @*@Html.DisplayNameFor(model => model.fonction)*@
+                        <input type="text" class="form-control" value="@Html.DisplayFor(modelItem => item.fonction)" id="inputFucnction" readonly="">
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="InputCin">CIN</label>
+                        @*@Html.DisplayNameFor(model => model.CIN)*@
+                        <input type="text" class="form-control" value="@Html.DisplayFor(modelItem => item.CIN)" id="InputCin" readonly="">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="inputEmail">Email</label>
+                        @*@Html.DisplayNameFor(model => model.Email)*@
+                        <input type="email" class="form-control" value="@Html.DisplayFor(modelItem => item.Email)" id="inputEmail" readonly="">
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="InputDateNaissence">Date Naissence</label>
+                        @*@Html.DisplayNameFor(model => model.Date_Naissance)*@
+                        <input type="text" class="form-control" value="@Html.DisplayFor(modelItem => item.Date_Naissance)" id="InputDateNaissence" readonly="">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="inputAddress">Adresse</label>
+                    @*@Html.DisplayNameFor(model => model.Adresse)*@
+                    <input type="text" class="form-control" value="@Html.DisplayFor(modelItem => item.Adresse)" id="inputAddress" readonly="">
+                </div>
+            }
+
+            @*@Html.ActionLink("Edit", "Edit", "Collaborateur",null, new { @class= "btn btn-primary" })*@
+            @*<button type="submit" class="btn btn-primary">Modifier</button>*@
+        </form>
+
+
+    </div>
+    <!-- /.container-fluid -->
+
+
+</div>

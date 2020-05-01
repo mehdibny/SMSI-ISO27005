@@ -1,0 +1,48 @@
+﻿@model SMSI_ISO27005.Models.disponibilte
+
+@{
+    ViewBag.Title = "DispoDetails";
+    Layout = "~/Views/Shared/_Dashboard.cshtml";
+}
+
+<h2>Disponibilité Details</h2>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.LabelFor(model => model.nom_dispo, "Nom Disponibilité")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nom_dispo)
+        </dd>
+
+        <dt>
+            @Html.LabelFor(model => model.date_creation_dispo, "Date Creation Disponibilité")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.date_creation_dispo)
+        </dd>
+
+        <dt>
+            @Html.LabelFor(model => model.descr_dispo, "Description Disponibilité")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.descr_dispo)
+        </dd>
+
+        <dt>
+            @Html.LabelFor(model => model.score_dispo, "Score Disponibilité")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.score_dispo)
+        </dd>
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Back to Actifs List", "Index", "Actifs")
+</p>

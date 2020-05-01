@@ -1,0 +1,50 @@
+﻿@model SMSI_ISO27005.Models.gestion_risque
+
+@{
+    ViewBag.Title = "RiskDatails";
+    Layout = "~/Views/Shared/_Dashboard.cshtml";
+}
+
+<h2>RiskDatails</h2>
+
+<div>
+    <h4>gestion_risque</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.LabelFor(model => model.nom_gesion_risk,"Nom")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nom_gesion_risk)
+        </dd>
+
+        <dt>
+            @Html.LabelFor(model => model.description_gestion_risk,"Description")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.description_gestion_risk)
+        </dd>
+
+        <dt>
+            @Html.LabelFor(model => model.date_creation_g_risk,"Date Creation")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.date_creation_g_risk)
+        </dd>
+
+        <dt>
+            @Html.LabelFor(model => model.risk_dicision,"Risque Dicision")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.risk_dicision)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Retour à Gestion Des Risque", "Index", "GestionRisque")
+</p>
