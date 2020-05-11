@@ -58,9 +58,9 @@
                             <div class="form-group">
                                 <input type="password" name="passeword" class="form-control form-control-user" id="exampleInputPassword" placeholder="Password" required>
                                 @Html.ValidationMessageFor(model => model.passeword)
-                                <div>
+                                @*<div>
                                     @Html.DisplayFor(model => model.errorMessage, new { @class = "alert alert-danger", @role = "alert" })
-                                </div>
+                                </div>*@
                             </div>
                             <div class="form-group">
                                 <div class="custom-control custom-checkbox small">

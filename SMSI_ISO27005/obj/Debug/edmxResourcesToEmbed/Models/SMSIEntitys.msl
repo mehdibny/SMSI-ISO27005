@@ -13,16 +13,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="activite">
-      <EntityTypeMapping TypeName="SMSIModel.activite">
-        <MappingFragment StoreEntitySet="activite">
-          <ScalarProperty Name="id_activite" ColumnName="id_activite" />
-          <ScalarProperty Name="nom_activite" ColumnName="nom_activite" />
-          <ScalarProperty Name="date_creation" ColumnName="date_creation" />
-          <ScalarProperty Name="matricule" ColumnName="matricule" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="CID_actif">
       <EntityTypeMapping TypeName="SMSIModel.CID_actif">
         <MappingFragment StoreEntitySet="CID_actif">
@@ -150,6 +140,7 @@
     <EntitySetMapping Name="action">
       <EntityTypeMapping TypeName="SMSIModel.action">
         <MappingFragment StoreEntitySet="action">
+          <ScalarProperty Name="id_mesure" ColumnName="id_mesure" />
           <ScalarProperty Name="date_creation" ColumnName="date_creation" />
           <ScalarProperty Name="id_gestion_risk" ColumnName="id_gestion_risk" />
           <ScalarProperty Name="matricule_responable" ColumnName="matricule_responable" />
@@ -171,6 +162,27 @@
           <ScalarProperty Name="description_gestion_risk" ColumnName="description_gestion_risk" />
           <ScalarProperty Name="nom_gesion_risk" ColumnName="nom_gesion_risk" />
           <ScalarProperty Name="id_gestion_risk" ColumnName="id_gestion_risk" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="action_mesure">
+      <EntityTypeMapping TypeName="SMSIModel.action_mesure">
+        <MappingFragment StoreEntitySet="action_mesure">
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="mesures" ColumnName="mesures" />
+          <ScalarProperty Name="objects" ColumnName="objects" />
+          <ScalarProperty Name="chapitre" ColumnName="chapitre" />
+          <ScalarProperty Name="id_mesure" ColumnName="id_mesure" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="activite">
+      <EntityTypeMapping TypeName="SMSIModel.activite">
+        <MappingFragment StoreEntitySet="activite">
+          <ScalarProperty Name="matricule" ColumnName="matricule" />
+          <ScalarProperty Name="date_creation" ColumnName="date_creation" />
+          <ScalarProperty Name="nom_activite" ColumnName="nom_activite" />
+          <ScalarProperty Name="id_activite" ColumnName="id_activite" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

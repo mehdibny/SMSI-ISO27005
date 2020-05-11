@@ -147,12 +147,12 @@ namespace SMSI_ISO27005.Controllers
                 vuln.date_creation_vulne = DateTime.Now;
                 vuln.desc_vulne = model.vulnerabilteDetailles.desc_vulne;
                 vuln.id_actif = model.actifDetailles.id_actif;
-                if (vuln.id_vulne.Equals(null) || vuln.nom_vulne.Equals(null) 
-                    || vuln.desc_vulne.Equals(null) || vuln.id_actif.Equals(null))
-                {
-                    vuln.errorMessage = null;
-                }
-                vuln.errorMessage = "Bien Ajoute";
+                //if (vuln.id_vulne.Equals(null) || vuln.nom_vulne.Equals(null) 
+                //    || vuln.desc_vulne.Equals(null) || vuln.id_actif.Equals(null))
+                //{
+                //    vuln.errorMessage = null;
+                //}
+                //vuln.errorMessage = "Bien Ajoute";
 
                 //Last Insetrded ID
                 int LastVulnID = vuln.id_vulne;
@@ -169,12 +169,12 @@ namespace SMSI_ISO27005.Controllers
                 men.desc_menace = model.menaceDetailles.desc_menace;
                 men.id_vulne = LastVulnID;
 
-                if (men.id_menace.Equals(null) || men.nom_menace.Equals(null) 
-                    || men.desc_menace.Equals(null) || men.id_vulne.Equals(null))
-                {
-                    men.errorMessage = null;
-                }
-                men.errorMessage = "Bien Ajoute";
+                //if (men.id_menace.Equals(null) || men.nom_menace.Equals(null) 
+                //    || men.desc_menace.Equals(null) || men.id_vulne.Equals(null))
+                //{
+                //    men.errorMessage = null;
+                //}
+                //men.errorMessage = "Bien Ajoute";
 
                 //Last Insetrded ID
                 int LastMenaceId = men.id_menace;
@@ -189,14 +189,14 @@ namespace SMSI_ISO27005.Controllers
                 imp.score_impact = model.impactDetailles.score_impact;
                 imp.id_menace = LastMenaceId;
 
-                if (imp.id_menace.Equals(null) || imp.id_impact.Equals(null) 
-                    || imp.nom_impact.Equals(null) || imp.descr_impact.Equals(null) 
-                    || imp.score_impact.Equals(null))
-                {
-                    imp.errorMessage = null;
-                }
+                //if (imp.id_menace.Equals(null) || imp.id_impact.Equals(null) 
+                //    || imp.nom_impact.Equals(null) || imp.descr_impact.Equals(null) 
+                //    || imp.score_impact.Equals(null))
+                //{
+                //    imp.errorMessage = null;
+                //}
 
-                imp.errorMessage = "Bien Ajoute";
+                //imp.errorMessage = "Bien Ajoute";
 
                 //Insert Into Probalite D'occurance Table
                 prob_occurrence occu = new prob_occurrence();
@@ -207,37 +207,37 @@ namespace SMSI_ISO27005.Controllers
                 occu.score_occur = model.probOccurrenceDetailles.score_occur;
                 occu.id_menace = LastMenaceId;
 
-                if (occu.id_menace.Equals(null) || occu.id_occur.Equals(null) 
-                    || occu.nom_occur.Equals(null) || occu.desc_occur.Equals(null) 
-                    || occu.score_occur.Equals(null))
-                {
-                    occu.errorMessage = null;
-                }
-                occu.errorMessage = "Bien Ajoute";
+                //if (occu.id_menace.Equals(null) || occu.id_occur.Equals(null) 
+                //    || occu.nom_occur.Equals(null) || occu.desc_occur.Equals(null) 
+                //    || occu.score_occur.Equals(null))
+                //{
+                //    occu.errorMessage = null;
+                //}
+                //occu.errorMessage = "Bien Ajoute";
 
-                if (vuln.errorMessage!=null && men.errorMessage!=null && imp.errorMessage 
-                    != null && occu.errorMessage != null)
-                {
+                //if (vuln.errorMessage!=null && men.errorMessage!=null && imp.errorMessage 
+                //    != null && occu.errorMessage != null)
+                //{
                     db.vulnerabilte.Add(vuln);
                     db.menace.Add(men);
                     db.impact.Add(imp);
                     db.prob_occurrence.Add(occu);
                     db.SaveChanges();
-                    model.vulnerabilteDetailles.errorMessage = "Bien Ajoute";
-                    TempData["errorMessage"] = model.vulnerabilteDetailles.errorMessage;
+                    //model.vulnerabilteDetailles.errorMessage = "Bien Ajoute";
+                    //TempData["errorMessage"] = model.vulnerabilteDetailles.errorMessage;
                     return View(model);
                     //return View("index");
 
 
-                }
-                else
-                {
-                    model.vulnerabilteDetailles.errorMessage = "Nope";
-                    TempData["errorMessage"] = model.vulnerabilteDetailles.errorMessage;
-                }
+                //}
+                //else
+                //{
+                //    model.vulnerabilteDetailles.errorMessage = "Nope";
+                //    TempData["errorMessage"] = model.vulnerabilteDetailles.errorMessage;
+                //}
 
                 //return View(model);
-                return View("index");
+                //return View("index");
 
             }
             catch (Exception)

@@ -14,17 +14,6 @@
     <Property Name="matricule" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
     <NavigationProperty Name="collaborateur" Relationship="SMSIModel.FK__actif__matricule__01142BA1" FromRole="actif" ToRole="collaborateur" />
   </EntityType>
-  <EntityType Name="activite">
-    <Key>
-      <PropertyRef Name="id_activite" />
-    </Key>
-    <Property Name="id_activite" Type="Int32" Nullable="false" />
-    <Property Name="nom_activite" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
-    <Property Name="date_creation" Type="DateTime" Precision="3" />
-    <Property Name="matricule" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
-    <NavigationProperty Name="collaborateur" Relationship="Self.FK__activite__matric__1273C1CD" FromRole="activite" ToRole="collaborateur" />
-    <NavigationProperty Name="CID_actif" Relationship="Self.FK__CID_actif__id_ac__20C1E124" FromRole="activite" ToRole="CID_actif" />
-  </EntityType>
   <EntityType Name="CID_actif">
     <Key>
       <PropertyRef Name="id_activite" />
@@ -36,10 +25,10 @@
     <Property Name="id_integ" Type="Int32" />
     <Property Name="id_dispo" Type="Int32" />
     <NavigationProperty Name="actif" Relationship="Self.FK__CID_actif__id_ac__21B6055D" FromRole="CID_actif" ToRole="actif" />
-    <NavigationProperty Name="activite" Relationship="Self.FK__CID_actif__id_ac__20C1E124" FromRole="CID_actif" ToRole="activite" />
     <NavigationProperty Name="confid" Relationship="Self.FK__CID_actif__id_co__22AA2996" FromRole="CID_actif" ToRole="confid" />
     <NavigationProperty Name="disponibilte" Relationship="Self.FK__CID_actif__id_di__25869641" FromRole="CID_actif" ToRole="disponibilte" />
     <NavigationProperty Name="integrite" Relationship="Self.FK__CID_actif__id_in__239E4DCF" FromRole="CID_actif" ToRole="integrite" />
+    <NavigationProperty Name="activite" Relationship="SMSIModel.FK__CID_actif__id_ac__3587F3E0" FromRole="CID_actif" ToRole="activite" />
   </EntityType>
   <EntityType Name="collaborateur">
     <Key>
@@ -50,12 +39,12 @@
     <Property Name="prenom" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
     <Property Name="fonction" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
     <Property Name="CIN" Type="String" MaxLength="11" FixedLength="false" Unicode="false" />
-    <NavigationProperty Name="activite" Relationship="Self.FK__activite__matric__1273C1CD" FromRole="collaborateur" ToRole="activite" />
     <NavigationProperty Name="user_table" Relationship="Self.FK__user_tabl__matri__6FE99F9F" FromRole="collaborateur" ToRole="user_table" />
     <Property Name="Email" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
     <Property Name="Date_Naissance" Type="DateTime" Precision="0" />
     <Property Name="Adresse" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <NavigationProperty Name="actif" Relationship="SMSIModel.FK__actif__matricule__01142BA1" FromRole="collaborateur" ToRole="actif" />
+    <NavigationProperty Name="activite" Relationship="SMSIModel.FK__activite__matric__3493CFA7" FromRole="collaborateur" ToRole="activite" />
   </EntityType>
   <EntityType Name="confid">
     <Key>
@@ -183,30 +172,6 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__activite__matric__1273C1CD">
-    <End Role="collaborateur" Type="Self.collaborateur" Multiplicity="0..1" />
-    <End Role="activite" Type="Self.activite" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="collaborateur">
-        <PropertyRef Name="matricule" />
-      </Principal>
-      <Dependent Role="activite">
-        <PropertyRef Name="matricule" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK__CID_actif__id_ac__20C1E124">
-    <End Role="activite" Type="Self.activite" Multiplicity="1" />
-    <End Role="CID_actif" Type="Self.CID_actif" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="activite">
-        <PropertyRef Name="id_activite" />
-      </Principal>
-      <Dependent Role="CID_actif">
-        <PropertyRef Name="id_activite" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="FK__CID_actif__id_co__22AA2996">
     <End Role="confid" Type="Self.confid" Multiplicity="0..1" />
     <End Role="CID_actif" Type="Self.CID_actif" Multiplicity="*" />
@@ -293,7 +258,6 @@
   </Association>
   <EntityContainer Name="SMSIEntities1" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="actif" EntityType="Self.actif" />
-    <EntitySet Name="activite" EntityType="Self.activite" />
     <EntitySet Name="CID_actif" EntityType="Self.CID_actif" />
     <EntitySet Name="collaborateur" EntityType="Self.collaborateur" />
     <EntitySet Name="confid" EntityType="Self.confid" />
@@ -312,14 +276,6 @@
     <AssociationSet Name="FK__vulnerabi__id_ac__286302EC" Association="Self.FK__vulnerabi__id_ac__286302EC">
       <End Role="actif" EntitySet="actif" />
       <End Role="vulnerabilte" EntitySet="vulnerabilte" />
-    </AssociationSet>
-    <AssociationSet Name="FK__activite__matric__1273C1CD" Association="Self.FK__activite__matric__1273C1CD">
-      <End Role="collaborateur" EntitySet="collaborateur" />
-      <End Role="activite" EntitySet="activite" />
-    </AssociationSet>
-    <AssociationSet Name="FK__CID_actif__id_ac__20C1E124" Association="Self.FK__CID_actif__id_ac__20C1E124">
-      <End Role="activite" EntitySet="activite" />
-      <End Role="CID_actif" EntitySet="CID_actif" />
     </AssociationSet>
     <AssociationSet Name="FK__CID_actif__id_co__22AA2996" Association="Self.FK__CID_actif__id_co__22AA2996">
       <End Role="confid" EntitySet="confid" />
@@ -363,6 +319,20 @@
       <End Role="vulnerabilte" EntitySet="vulnerabilte" />
       <End Role="gestion_risque" EntitySet="gestion_risque" />
     </AssociationSet>
+    <EntitySet Name="action_mesure" EntityType="SMSIModel.action_mesure" />
+    <AssociationSet Name="FK__action__id_mesur__17F790F9" Association="SMSIModel.FK__action__id_mesur__17F790F9">
+      <End Role="action_mesure" EntitySet="action_mesure" />
+      <End Role="action" EntitySet="action" />
+    </AssociationSet>
+    <EntitySet Name="activite" EntityType="SMSIModel.activite" />
+    <AssociationSet Name="FK__activite__matric__3493CFA7" Association="SMSIModel.FK__activite__matric__3493CFA7">
+      <End Role="collaborateur" EntitySet="collaborateur" />
+      <End Role="activite" EntitySet="activite" />
+    </AssociationSet>
+    <AssociationSet Name="FK__CID_actif__id_ac__3587F3E0" Association="SMSIModel.FK__CID_actif__id_ac__3587F3E0">
+      <End Role="activite" EntitySet="activite" />
+      <End Role="CID_actif" EntitySet="CID_actif" />
+    </AssociationSet>
   </EntityContainer>
   <Association Name="FK__actif__matricule__01142BA1">
     <End Type="SMSIModel.collaborateur" Role="collaborateur" Multiplicity="0..1" />
@@ -390,6 +360,8 @@
     <Property Name="id_gestion_risk" Type="Int32" />
     <NavigationProperty Name="gestion_risque" Relationship="SMSIModel.FK_action_gestion_risque" FromRole="action" ToRole="gestion_risque" />
     <Property Name="date_creation" Type="DateTime" Precision="0" />
+    <Property Name="id_mesure" Type="Int32" />
+    <NavigationProperty Name="action_mesure" Relationship="SMSIModel.FK__action__id_mesur__17F790F9" FromRole="action" ToRole="action_mesure" />
   </EntityType>
   <EntityType Name="gestion_risque">
     <Key>
@@ -425,6 +397,64 @@
       </Principal>
       <Dependent Role="gestion_risque">
         <PropertyRef Name="id_vulne" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="action_mesure">
+    <Key>
+      <PropertyRef Name="id_mesure" />
+    </Key>
+    <Property Name="id_mesure" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="chapitre" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="objects" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="mesures" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="description" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="action" Relationship="SMSIModel.FK__action__id_mesur__17F790F9" FromRole="action_mesure" ToRole="action" />
+  </EntityType>
+  <Association Name="FK__action__id_mesur__17F790F9">
+    <End Type="SMSIModel.action_mesure" Role="action_mesure" Multiplicity="0..1" />
+    <End Type="SMSIModel.action" Role="action" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="action_mesure">
+        <PropertyRef Name="id_mesure" />
+      </Principal>
+      <Dependent Role="action">
+        <PropertyRef Name="id_mesure" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="activite">
+    <Key>
+      <PropertyRef Name="id_activite" />
+    </Key>
+    <Property Name="id_activite" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nom_activite" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Name="date_creation" Type="DateTime" Precision="3" />
+    <Property Name="matricule" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="collaborateur" Relationship="SMSIModel.FK__activite__matric__3493CFA7" FromRole="activite" ToRole="collaborateur" />
+    <NavigationProperty Name="CID_actif" Relationship="SMSIModel.FK__CID_actif__id_ac__3587F3E0" FromRole="activite" ToRole="CID_actif" />
+  </EntityType>
+  <Association Name="FK__activite__matric__3493CFA7">
+    <End Type="SMSIModel.collaborateur" Role="collaborateur" Multiplicity="0..1" />
+    <End Type="SMSIModel.activite" Role="activite" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="collaborateur">
+        <PropertyRef Name="matricule" />
+      </Principal>
+      <Dependent Role="activite">
+        <PropertyRef Name="matricule" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__CID_actif__id_ac__3587F3E0">
+    <End Type="SMSIModel.activite" Role="activite" Multiplicity="1" />
+    <End Type="SMSIModel.CID_actif" Role="CID_actif" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="activite">
+        <PropertyRef Name="id_activite" />
+      </Principal>
+      <Dependent Role="CID_actif">
+        <PropertyRef Name="id_activite" />
       </Dependent>
     </ReferentialConstraint>
   </Association>

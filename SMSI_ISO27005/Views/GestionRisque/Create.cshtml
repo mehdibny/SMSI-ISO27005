@@ -56,6 +56,14 @@
 
                 @Html.TextAreaFor(model => model.actionDetailles.commentaire, new { @class = "form-control", @placeholder = "Commentaire" })
                 @Html.ValidationMessageFor(model => model.actionDetailles.commentaire, null, new { @class = "text-danger" })
+
+                @Html.DropDownList("chapitre", null, "Veuillez Sélectioner Une chapitre", htmlAttributes: new { @class = "form-control", @required = "required" })
+                @Html.DropDownListFor(model => model.ActionMuseres.objects, new SelectList(" "), "-- Veuillez Sélectioner Un Object --", htmlAttributes: new { @class = "form-control", @required = "required" })
+                @Html.DropDownListFor(model => model.ActionMuseres.mesures, new SelectList(" "), "-- Veuillez Sélectioner Une Mesure --", htmlAttributes: new { @class = "form-control", @required = "required" })
+                @Html.TextAreaFor(model => model.ActionMuseres.description, new { @class = "form-control", })
+
+
+                @Html.HiddenFor(model => model.actionDetailles.id_mesure)
             </div>
         </div>
 
@@ -74,6 +82,37 @@
 
     <link href="~/Content/sweetalert/sweet-alert.css" rel="stylesheet" />
                 <script type="text/javascript">
+                    $(document).ready(function () {
+                        $("#chapitre").change(function () {
+                            $.get("/ActionMesure/GetObjects", { chapitre: $("#chapitre").val() }, function (data) {
+                                $("#ActionMuseres_objects").empty();
+                                $.each(data, function (index, row) {
+                                    $("#ActionMuseres_objects").append("<option value ='" + row + "'>" + row + "</option>")
+                                });
+                            });
+                        }),
+                            $("#ActionMuseres_objects").click(function () {
+                            $.get("/ActionMesure/GetMesures", { objects: $("#ActionMuseres_objects").val() }, function (data) {
+                                    $("#ActionMuseres_mesures").empty();
+                                    $.each(data, function (index, row) {
+                                        $("#ActionMuseres_mesures").append("<option value ='" + row + "'>" + row + "</option>")
+                                    });
+                                });
+                            }),
+                            $("#ActionMuseres_mesures").click(function () {
+                            $.get("/ActionMesure/GetDescription", { mesures: $("#ActionMuseres_mesures").val() }, function (data) {
+                                $("#ActionMuseres_description").empty();
+                                $("#ActionMuseres_description").prop('disabled', true);
+                                    $.each(data, function (index, row) {
+                                        $("#ActionMuseres_description").val(row.id_mesure + " " + row.description);
+                                        $("#ActionMuseres_description").prop('disabled', true);
+                                        $("#actionDetailles_id_mesure").val(row.id_mesure);
+
+                                    });
+
+                                });
+                            })
+                    });
                     var successMessage = '@TempData["SucccesMessage"]'
 
                     if (successMessage == "Bien Ajouter") {

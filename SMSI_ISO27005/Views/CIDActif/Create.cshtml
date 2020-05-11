@@ -19,14 +19,15 @@
             <div class="col-md-10 text-center mr-auto">
 
 
-                @Html.DropDownListFor(model => model.activiteDetaillese.id_activite,ViewBag.activiteList as SelectList, "Veuillez Sélectioner Une Activite", new { @class = "btn btn-secondary  dropdown-toggle"})
+                @Html.DropDownListFor(model => model.activiteDetaillese.id_activite,ViewBag.activiteList as SelectList, "Veuillez Sélectioner Une Activite", new { @class = "btn btn-secondary  dropdown-toggle", @required = "required" })
                   @*@Html.ValidationMessageFor(m => m.activiteDetaillese.id_activite,null, new { @class = "text-danger" })*@
-                @Html.DisplayFor(model => model.CIDDetailles.errorMessage, new { @class = "text-danger" })
+               
 
 
-                @Html.DropDownListFor(model => model.actifDetailles.id_actif,ViewBag.actifList as SelectList, "Veuillez Sélectioner Un Actif", new {@class = "btn btn-secondary  dropdown-toggle"@*,@disabled = "disabled"*@})
+                @Html.DropDownListFor(model => model.actifDetailles.id_actif,ViewBag.actifList as SelectList, "Veuillez Sélectioner Un Actif", new {@class = "btn btn-secondary  dropdown-toggle"@*,@disabled = "disabled"*@ ,@required= "required"
+           })
                 <br />  @Html.ValidationMessageFor(m => m.actifDetailles.id_actif, null, new { @class = "text-danger" })
-                @Html.DisplayFor(model => model.CIDDetailles.errorMessage, new { @class = "text-danger" })
+                
 
 
 

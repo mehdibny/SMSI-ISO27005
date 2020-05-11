@@ -6,7 +6,6 @@
     <edmx:Diagrams>
       <Diagram DiagramId="afc06d7ae15a4469b96618a1d3a99bc3" Name="Diagram1">
         <EntityTypeShape EntityType="SMSIModel.actif" Width="1.5" PointX="5.375" PointY="3.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="SMSIModel.activite" Width="1.5" PointX="6.125" PointY="1.125" IsExpanded="true" />
         <EntityTypeShape EntityType="SMSIModel.CID_actif" Width="1.5" PointX="10" PointY="0.5" IsExpanded="true" />
         <EntityTypeShape EntityType="SMSIModel.collaborateur" Width="1.5" PointX="3" PointY="0.875" IsExpanded="true" />
         <EntityTypeShape EntityType="SMSIModel.confid" Width="1.5" PointX="3" PointY="10.75" IsExpanded="true" />
@@ -20,8 +19,6 @@
         <EntityTypeShape EntityType="SMSIModel.vulnerabilte" Width="1.5" PointX="5.25" PointY="9.625" IsExpanded="true" />
         <AssociationConnector Association="SMSIModel.FK__CID_actif__id_ac__21B6055D" ManuallyRouted="false" />
         <AssociationConnector Association="SMSIModel.FK__vulnerabi__id_ac__286302EC" ManuallyRouted="false" />
-        <AssociationConnector Association="SMSIModel.FK__activite__matric__1273C1CD" ManuallyRouted="false" />
-        <AssociationConnector Association="SMSIModel.FK__CID_actif__id_ac__20C1E124" ManuallyRouted="false" />
         <AssociationConnector Association="SMSIModel.FK__CID_actif__id_co__22AA2996" ManuallyRouted="false" />
         <AssociationConnector Association="SMSIModel.FK__CID_actif__id_di__25869641" ManuallyRouted="false" />
         <AssociationConnector Association="SMSIModel.FK__CID_actif__id_in__239E4DCF" ManuallyRouted="false" />
@@ -34,6 +31,11 @@
         <EntityTypeShape EntityType="SMSIModel.gestion_risque" Width="1.5" PointX="7.5" PointY="13.625" />
         <AssociationConnector Association="SMSIModel.FK_action_gestion_risque" />
         <AssociationConnector Association="SMSIModel.FK_gestion_risque_gestion_risque" />
+        <EntityTypeShape EntityType="SMSIModel.action_mesure" Width="1.5" PointX="0.75" PointY="6.875" />
+        <AssociationConnector Association="SMSIModel.FK__action__id_mesur__17F790F9" />
+        <EntityTypeShape EntityType="SMSIModel.activite" Width="1.5" PointX="5.25" PointY="0.75" />
+        <AssociationConnector Association="SMSIModel.FK__activite__matric__3493CFA7" />
+        <AssociationConnector Association="SMSIModel.FK__CID_actif__id_ac__3587F3E0" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

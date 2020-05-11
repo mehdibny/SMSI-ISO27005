@@ -12,6 +12,7 @@ namespace SMSI_ISO27005.Controllers
 {
     public class GestionRisqueController : Controller
     {
+        private SMSIEntities1 db = new SMSIEntities1();
         // GET: GestionRisque
         public ActionResult Index(string search, int? i, int id = 0)
         {
@@ -80,13 +81,35 @@ namespace SMSI_ISO27005.Controllers
         // GET: GestionRisque/Create
         public ActionResult Create()
         {
-            SMSIEntities1 db = new SMSIEntities1();
+            
+            ViewBag.chapitre = new SelectList(db.action_mesure.Select(a => a.chapitre).Distinct().ToList());
 
+            ViewBag.objects = new SelectList(db.action_mesure.Select(a => a.objects).Distinct());
+
+            ViewBag.mesures = new SelectList(db.action_mesure.Select(a => a.mesures).Distinct());
             List<vulnerabilte> listVuln = db.vulnerabilte.ToList();
             ViewBag.vulnList = new SelectList(listVuln, "id_vulne", "nom_vulne");
             return View();
         }
+        public JsonResult GetObjects(string chapitre)
+        {
 
+            var objectlist = db.action_mesure.Where(a => a.chapitre == chapitre).Select(a => a.objects).Distinct();
+            return Json(objectlist.AsEnumerable().ToList(), JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult GetMesures(string objects)
+        {
+
+            var objectlist = db.action_mesure.Where(a => a.objects == objects).Select(a => a.mesures).Distinct();
+            return Json(objectlist.AsEnumerable().ToList(), JsonRequestBehavior.AllowGet);
+        }
+        public JsonResult GetDescription(string mesures)
+        {
+
+            var objectlist = db.action_mesure.Where(a => a.mesures == mesures);
+            return Json(objectlist.AsEnumerable().ToList(), JsonRequestBehavior.AllowGet);
+        }
         // POST: GestionRisque/Create
         [HttpPost]
         public ActionResult Create(CIDActifVM model)
@@ -109,7 +132,7 @@ namespace SMSI_ISO27005.Controllers
                 risk.date_creation_g_risk = DateTime.Now;
                 risk.risk_dicision = model.gestionDetailles.risk_dicision;
                 risk.id_vulne = model.vulnerabilteDetailles.id_vulne;
-                risk.errorMessage = "Done";
+                //risk.errorMessage = "Done";
                 db.gestion_risque.Add(risk);
                 //db.SaveChanges();
 
@@ -126,7 +149,8 @@ namespace SMSI_ISO27005.Controllers
                 act.matricule_responable = Session["UserMatricule"].ToString();
                 act.id_gestion_risk = LastRiskID;
                 act.date_creation = DateTime.Now;
-                act.errorMessage = "Done";
+                act.id_mesure = model.actionDetailles.id_mesure;
+                //act.errorMessage = "Done";
                 db.action.Add(act);
                 //db.SaveChanges();
 
@@ -137,20 +161,24 @@ namespace SMSI_ISO27005.Controllers
                 if (vulCount >= 3 )
                 {
                     TempData["SucccesMessage"] = "Plus";
+                    ViewBag.chapitre = new SelectList(db.action_mesure.Select(a => a.chapitre).Distinct().ToList());
                     return View(model);
 
                 }
                 TempData["SucccesMessage"] = "Bien Ajouter";
                 db.SaveChanges();
-                return View(model);
+                ViewBag.chapitre = new SelectList(db.action_mesure.Select(a => a.chapitre).Distinct().ToList());
+                return View();
                 //}
                 //TempData["SucccesMessage"] = "Veuillez Remplisez Les Champs";
                 //return View(model);
             }
             catch (Exception)
             {
+                ViewBag.chapitre = new SelectList(db.action_mesure.Select(a => a.chapitre).Distinct().ToList());
                 return View("");
             }
+            ViewBag.chapitre = new SelectList(db.action_mesure.Select(a => a.chapitre).Distinct().ToList());
         }
 
         // GET: GestionRisque/Edit/5

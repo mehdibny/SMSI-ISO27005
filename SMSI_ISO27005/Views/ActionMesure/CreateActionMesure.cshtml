@@ -1,0 +1,95 @@
+﻿@model SMSI_ISO27005.Models.action_mesure
+
+@{
+    ViewBag.Title = "CreateActionMesure";
+    Layout = "~/Views/Shared/_Dashboard.cshtml";
+}
+
+<h2>CreateActionMesure</h2>
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4>action_mesure</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.chapitre, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("chapitre", null, "Please specify the Status", htmlAttributes: new { @class = "form-control", @required = "required" })
+                
+                @Html.ValidationMessageFor(model => model.chapitre, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.objects, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+
+                @Html.DropDownListFor(model => model.objects,new SelectList(" "),"-- Selecte an Object --", htmlAttributes: new { @class = "form-control", @required = "required" })
+                @Html.ValidationMessageFor(model => model.objects, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.mesures, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.mesures, new SelectList(" "), "-- Selecte an Mesure --", htmlAttributes: new { @class = "form-control", @required = "required" })
+                @Html.ValidationMessageFor(model => model.mesures, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.description, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextAreaFor(model => model.description, new {  @class = "form-control" , })
+                @Html.ValidationMessageFor(model => model.description, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+<script src="~/Content/vendor/jquery/jquery.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $("#chapitre").change(function () {
+            $.get("/ActionMesure/GetObjects", { chapitre: $("#chapitre").val() }, function (data) {
+                $("#objects").empty();
+                $.each(data, function (index, row) {
+                    $("#objects").append("<option value ='" + row + "'>" + row + "</option>")
+                });
+            });
+        }),
+            $("#objects").click(function () {
+            $.get("/ActionMesure/GetMesures", { objects: $("#objects").val() }, function (data) {
+                    $("#mesures").empty();
+                    $.each(data, function (index, row) {
+                        $("#mesures").append("<option value ='" + row + "'>" + row + "</option>")
+                    });
+                });
+            }),
+            $("#mesures").click(function () {
+            $.get("/ActionMesure/GetDescription", { mesures: $("#mesures").val() }, function (data) {
+                $("#description").empty();
+                $("#description").prop('disabled', true);
+                $.each(data, function (index, row) {
+                    $("#description").val(row.id_mesure + " " + row.description);
+                    $("#description").prop('disabled', true);
+                    
+                });
+                
+            });
+        })
+    });
+</script>

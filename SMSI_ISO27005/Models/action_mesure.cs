@@ -12,25 +12,21 @@ namespace SMSI_ISO27005.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class vulnerabilte
+    public partial class action_mesure
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public vulnerabilte()
+        public action_mesure()
         {
-            this.menace = new HashSet<menace>();
-            this.gestion_risque = new HashSet<gestion_risque>();
+            this.action = new HashSet<action>();
         }
     
-        public int id_vulne { get; set; }
-        public string nom_vulne { get; set; }
-        public Nullable<System.DateTime> date_creation_vulne { get; set; }
-        public string desc_vulne { get; set; }
-        public Nullable<int> id_actif { get; set; }
+        public int id_mesure { get; set; }
+        public string chapitre { get; set; }
+        public string objects { get; set; }
+        public string mesures { get; set; }
+        public string description { get; set; }
     
-        public virtual actif actif { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<menace> menace { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<gestion_risque> gestion_risque { get; set; }
+        public virtual ICollection<action> action { get; set; }
     }
 }

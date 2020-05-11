@@ -77,24 +77,23 @@ namespace SMSI_ISO27005.Controllers
         [HttpPost]
         public ActionResult Create(activite Activite)
         {
-            try
-            {
+            
                 // TODO: Add insert logic here
                 using (SMSIEntities1 db = new SMSIEntities1())
                 {
                     activite Activites = new activite();
-                    Activites.id_activite = Activite.id_activite;
+                   
                     Activites.nom_activite = Activite.nom_activite;
                     Activites.date_creation = DateTime.Now;
                     Activites.matricule = Session["UserMatricule"].ToString();
-                    var exists = db.activite.Where(w => w.id_activite == Activite.id_activite).FirstOrDefault();
-                    if (exists!=null)
-                    {
-                        //Activite.errorMessage = "Activite Deja Existant";
-                        TempData["errorMessage"] = "Activite Deja Existant";
-                        //ViewBag.Message = "Activite Deja Existant";
-                        return View("create", Activite);
-                    }
+                    //var exists = db.activite.Where(w => w.id_activite == Activite.id_activite).FirstOrDefault();
+                    //if (exists!=null)
+                    //{
+                    //    //Activite.errorMessage = "Activite Deja Existant";
+                    //    TempData["errorMessage"] = "Activite Deja Existant";
+                    //    //ViewBag.Message = "Activite Deja Existant";
+                    //    return View("create", Activite);
+                    //}
                     
                         db.activite.Add(Activites);
                         db.SaveChanges();
@@ -102,11 +101,7 @@ namespace SMSI_ISO27005.Controllers
                     
 
                 }
-            }
-            catch
-            {
-                return View("");
-            }
+            
         }
 
         // GET: Activites/Edit/5

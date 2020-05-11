@@ -23,7 +23,8 @@ namespace SMSI_ISO27005.Controllers
                 var userDetailes = db.user_table.Where(x => x.username == userModel.username && x.passeword == userModel.passeword).FirstOrDefault();
                 if (userDetailes == null)
                 {
-                    userModel.errorMessage = "Matricule ou Mot De Passe Incorect !";
+                    //userModel.errorMessage = "Matricule ou Mot De Passe Incorect !";
+                    
                     return View("Index", userModel);
                 }
                 else

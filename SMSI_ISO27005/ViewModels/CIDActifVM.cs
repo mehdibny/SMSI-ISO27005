@@ -26,5 +26,6 @@ namespace SMSI_ISO27005.ViewModels
         public impact impactDetailles { get; set; }
         public gestion_risque gestionDetailles { get; set; }
         public action actionDetailles { get; set; }
+        public ActionMusereViewModel ActionMuseres { get; set; }
     }
 }
