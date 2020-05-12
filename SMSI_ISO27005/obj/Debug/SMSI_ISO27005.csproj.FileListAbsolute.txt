@@ -177,3 +177,4 @@ C:\Users\Dell\Source\Repos\SMSI-ISO270052\SMSI_ISO27005\obj\Debug\SMSI_ISO27005.
 C:\Users\Dell\Source\Repos\SMSI-ISO270052\SMSI_ISO27005\obj\Debug\SMSI_ISO27005.csproj.CopyComplete
 C:\Users\Dell\Source\Repos\SMSI-ISO270052\SMSI_ISO27005\obj\Debug\SMSI_ISO27005.dll
 C:\Users\Dell\Source\Repos\SMSI-ISO270052\SMSI_ISO27005\obj\Debug\SMSI_ISO27005.pdb
+C:\Users\Dell\Source\Repos\SMSI-ISO270052\SMSI_ISO27005\obj\Debug\SMSI_ISO27005.csprojAssemblyReference.cache

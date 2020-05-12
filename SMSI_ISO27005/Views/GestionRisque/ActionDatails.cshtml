@@ -43,7 +43,7 @@
         </dd>
 
         <dt>
-            @Html.LabelFor(model => model.commentaire,"Commentaire")
+            @Html.LabelFor(model => model.commentaire, "Commentaire")
         </dt>
 
         <dd>
@@ -55,6 +55,34 @@
 
         <dd>
             @Html.DisplayFor(model => model.matricule_responable)
+        </dd>
+        <dt>
+            @Html.LabelFor(model => model.action_mesure.chapitre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.action_mesure.chapitre)
+        </dd>
+        <dt>
+            @Html.LabelFor(model => model.action_mesure.objects)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.action_mesure.objects)
+        </dd>
+        <dt>
+            @Html.LabelFor(model => model.action_mesure.mesures)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.action_mesure.mesures)
+        </dd>
+        <dt>
+            @Html.LabelFor(model => model.action_mesure.description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.action_mesure.description)
         </dd>
     </dl>
 </div>

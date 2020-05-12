@@ -5,6 +5,7 @@ using SMSI_ISO27005.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Data.Entity;
 using System.Web;
 using System.Web.Mvc;
 
@@ -16,7 +17,7 @@ namespace SMSI_ISO27005.Controllers
         // GET: GestionRisque
         public ActionResult Index(string search, int? i, int id = 0)
         {
-            SMSIEntities1 db = new SMSIEntities1();
+           
 
             List<actif> actifNom = db.actif.ToList();
             List<vulnerabilte> vulneNom = db.vulnerabilte.ToList();
@@ -53,17 +54,18 @@ namespace SMSI_ISO27005.Controllers
         {
             using (SMSIEntities1 db = new SMSIEntities1())
             {
-                return View(db.action.Where(x => x.id_action == id).FirstOrDefault());
+                
+                return View(db.action.Include(a => a.action_mesure).Where(x => x.id_action == id).FirstOrDefault());
 
             }
-
+            
 
         }
         public ActionResult ActionEdit(int id = 0)
         {
             using (SMSIEntities1 db = new SMSIEntities1())
             {
-                return View(db.action.Where(x => x.id_action == id).FirstOrDefault());
+                return View(db.action.Include(a=>a.action_mesure).Where(x => x.id_action == id).FirstOrDefault());
 
             }
         }
@@ -117,7 +119,7 @@ namespace SMSI_ISO27005.Controllers
             try
             {
                 // TODO: Add insert logic here
-                SMSIEntities1 db = new SMSIEntities1();
+               
                 List<gestion_risque> risqueNom = db.gestion_risque.ToList();
 
                 //Vulnerabilite DropDownList
