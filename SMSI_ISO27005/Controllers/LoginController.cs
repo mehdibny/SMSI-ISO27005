@@ -24,8 +24,9 @@ namespace SMSI_ISO27005.Controllers
                 if (userDetailes == null)
                 {
                     //userModel.errorMessage = "Matricule ou Mot De Passe Incorect !";
-                    
-                    return View("Index", userModel);
+                    TempData["errorMessage"] = "Matricule ou Mot De Passe Incorect !";
+                    return RedirectToAction("Index", "Login");
+
                 }
                 else
                 {

@@ -40,43 +40,43 @@
         <div class="form-group">
             @Html.LabelFor(model => model.confidDetailles.nom_confid,"Confidentalite :", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.TextBoxFor(model => model.confidDetailles.nom_confid, new { @class = "form-control", @placeholder = "Name" })
+                @Html.TextBoxFor(model => model.confidDetailles.nom_confid, new { @class = "form-control", @placeholder = "Name", @required = "required" })
                 @Html.ValidationMessageFor(m => m.confidDetailles.nom_confid, null, new { @class = "text-danger" })
 
-                @Html.TextAreaFor(model => model.confidDetailles.descr_confid, new { @class = "form-control", @placeholder = "Discription" })
+                @Html.TextAreaFor(model => model.confidDetailles.descr_confid, new { @class = "form-control", @placeholder = "Discription", @required = "required" })
                 @Html.ValidationMessageFor(m => m.confidDetailles.descr_confid, null, new { @class = "text-danger" })
 
 
-                @Html.TextBoxFor(model => model.confidDetailles.score_confid, new { @class = "form-control", @placeholder = "Score" })
+                @Html.TextBoxFor(model => model.confidDetailles.score_confid, new { @class = "form-control", @placeholder = "Score", @type = "number", @min = "1", @max = "3", @required = "required" })
                 @Html.ValidationMessageFor(m => m.confidDetailles.score_confid, null, new { @class = "text-danger" })
             </div>
         </div>
         <div class="form-group">
             @Html.LabelFor(model => model.integriteDetailles.nom_integ, "Integrite",htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.TextBoxFor(model => model.integriteDetailles.nom_integ, new { @class = "form-control", @placeholder = "Name" })
+                @Html.TextBoxFor(model => model.integriteDetailles.nom_integ, new { @class = "form-control", @placeholder = "Name", @required = "required" })
                 @Html.ValidationMessageFor(m => m.integriteDetailles.nom_integ, null, new { @class = "text-danger" })
 
 
-                @Html.TextAreaFor(model => model.integriteDetailles.descr_integ, new { @class = "form-control", @placeholder = "Discription" })
+                @Html.TextAreaFor(model => model.integriteDetailles.descr_integ, new { @class = "form-control", @placeholder = "Discription", @required = "required" })
                 @Html.ValidationMessageFor(m => m.integriteDetailles.descr_integ, null, new { @class = "text-danger" })
 
 
-                @Html.TextBoxFor(model => model.integriteDetailles.score_integd, new { @class = "form-control", @placeholder = "Score" })
+                @Html.TextBoxFor(model => model.integriteDetailles.score_integd, new { @class = "form-control", @placeholder = "Score",@type= "number", @min = "1", @max = "3", @required = "required" })
                 @Html.ValidationMessageFor(m => m.integriteDetailles.score_integd, null, new { @class = "text-danger" })
             </div>
         </div>
         <div class="form-group">
             @Html.LabelFor(model => model.disponibilteDetailles.nom_dispo, "Disponibilite",htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.TextBoxFor(model => model.disponibilteDetailles.nom_dispo, new { @class = "form-control", @placeholder = "Name" })
+                @Html.TextBoxFor(model => model.disponibilteDetailles.nom_dispo, new { @class = "form-control", @placeholder = "Name", @required = "required" })
                 @Html.ValidationMessageFor(m => m.disponibilteDetailles.nom_dispo, null, new { @class = "text-danger" })
 
-                @Html.TextAreaFor(model => model.disponibilteDetailles.descr_dispo, new { @class = "form-control", @placeholder = "Discription" })
+                @Html.TextAreaFor(model => model.disponibilteDetailles.descr_dispo, new { @class = "form-control", @placeholder = "Discription", @required = "required" })
                 @Html.ValidationMessageFor(m => m.disponibilteDetailles.descr_dispo, null, new { @class = "text-danger" })
 
 
-                @Html.TextBoxFor(model => model.disponibilteDetailles.score_dispo, new { @class = "form-control", @placeholder = "Score" })
+                @Html.TextBoxFor(model => model.disponibilteDetailles.score_dispo, new { @class = "form-control", @placeholder = "Score", @type = "number", @min = "1", @max = "3", @required = "required" })
                 @Html.ValidationMessageFor(m => m.disponibilteDetailles.score_dispo,null, new { @class = "text-danger" })
             </div>
         </div>

@@ -147,12 +147,12 @@ namespace SMSI_ISO27005.Controllers
                 vuln.date_creation_vulne = DateTime.Now;
                 vuln.desc_vulne = model.vulnerabilteDetailles.desc_vulne;
                 vuln.id_actif = model.actifDetailles.id_actif;
-                //if (vuln.id_vulne.Equals(null) || vuln.nom_vulne.Equals(null) 
+                //if (vuln.id_vulne.Equals(null) || vuln.nom_vulne.Equals(null)
                 //    || vuln.desc_vulne.Equals(null) || vuln.id_actif.Equals(null))
                 //{
                 //    vuln.errorMessage = null;
                 //}
-                //vuln.errorMessage = "Bien Ajoute";
+                TempData["errorMessage"] = "Bien Ajoute";
 
                 //Last Insetrded ID
                 int LastVulnID = vuln.id_vulne;
@@ -196,7 +196,7 @@ namespace SMSI_ISO27005.Controllers
                 //    imp.errorMessage = null;
                 //}
 
-                //imp.errorMessage = "Bien Ajoute";
+                TempData["errorMessage"] = "Bien Ajoute";
 
                 //Insert Into Probalite D'occurance Table
                 prob_occurrence occu = new prob_occurrence();
@@ -213,7 +213,7 @@ namespace SMSI_ISO27005.Controllers
                 //{
                 //    occu.errorMessage = null;
                 //}
-                //occu.errorMessage = "Bien Ajoute";
+                TempData["errorMessage"] = "Bien Ajoute";
 
                 //if (vuln.errorMessage!=null && men.errorMessage!=null && imp.errorMessage 
                 //    != null && occu.errorMessage != null)
@@ -223,10 +223,11 @@ namespace SMSI_ISO27005.Controllers
                     db.impact.Add(imp);
                     db.prob_occurrence.Add(occu);
                     db.SaveChanges();
-                    //model.vulnerabilteDetailles.errorMessage = "Bien Ajoute";
-                    //TempData["errorMessage"] = model.vulnerabilteDetailles.errorMessage;
-                    return View(model);
-                    //return View("index");
+                //model.vulnerabilteDetailles.errorMessage = "Bien Ajoute";
+                TempData["errorMessage"] = "Bien Ajoute";
+                //return View(model);
+                return RedirectToAction("Index");
+                //return View("index");
 
 
                 //}

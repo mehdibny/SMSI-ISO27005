@@ -86,16 +86,16 @@ namespace SMSI_ISO27005.Controllers
                     Activites.nom_activite = Activite.nom_activite;
                     Activites.date_creation = DateTime.Now;
                     Activites.matricule = Session["UserMatricule"].ToString();
-                    //var exists = db.activite.Where(w => w.id_activite == Activite.id_activite).FirstOrDefault();
-                    //if (exists!=null)
-                    //{
-                    //    //Activite.errorMessage = "Activite Deja Existant";
-                    //    TempData["errorMessage"] = "Activite Deja Existant";
-                    //    //ViewBag.Message = "Activite Deja Existant";
-                    //    return View("create", Activite);
-                    //}
-                    
-                        db.activite.Add(Activites);
+                var exists = db.activite.Where(w => w.id_activite == Activite.id_activite).FirstOrDefault();
+                if (exists != null)
+                {
+                    //Activite.errorMessage = "Activite Deja Existant";
+                    TempData["errorMessage"] = "Activite Deja Existant";
+                    //ViewBag.Message = "Activite Deja Existant";
+                    return View("create", Activite);
+                }
+
+                db.activite.Add(Activites);
                         db.SaveChanges();
                         return RedirectToAction("Index");
                     

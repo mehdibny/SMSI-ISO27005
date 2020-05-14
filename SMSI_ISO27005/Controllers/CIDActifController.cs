@@ -179,6 +179,10 @@ namespace SMSI_ISO27005.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(CIDActifVM model,int id=0)
         {
+            var ConfiderrorMessage = "";
+            var IntegriteerrorMessage = "";
+            var DisponibilteerrorMessage = "";
+            var CIDerrorMessage = "";
 
             try
             {
@@ -200,14 +204,15 @@ namespace SMSI_ISO27005.Controllers
                     Confid.date_creation_confid = DateTime.Now;/*model.confidDetailles.date_creation_confid;*/
                     Confid.descr_confid = model.confidDetailles.descr_confid;
                     Confid.score_confid = model.confidDetailles.score_confid;
-                    //if (Confid.id_confi.Equals(null) || Confid.nom_confid.Equals(null)
-                    //    || Confid.date_creation_confid.Equals(null) || Confid.descr_confid.Equals(null)
-                    //    || Confid.score_confid.Equals(null) || Confid.errorMessage != null)
-                    //{
-                    //    Confid.errorMessage = "no";
-                    //}
-                    db.confid.Add(Confid);
-                    //db.SaveChanges();
+
+                //if (Confid.id_confi.Equals(null) || Confid.nom_confid.Equals(null)
+                //    || Confid.date_creation_confid.Equals(null) || Confid.descr_confid.Equals(null)
+                //    || Confid.score_confid.Equals(null) || ConfiderrorMessage != null)
+                //{
+                //    ConfiderrorMessage = "no";
+                //}
+                db.confid.Add(Confid);
+                db.SaveChanges();
 
                     //Last Insetrded ID
                     int LastConfId = Confid.id_confi;
@@ -220,15 +225,15 @@ namespace SMSI_ISO27005.Controllers
                     Integrite.date_creation_integ = DateTime.Now; /*model.integriteDetailles.date_creation_integ;*/
                     Integrite.descr_integ = model.integriteDetailles.descr_integ;
                     Integrite.score_integd = model.integriteDetailles.score_integd;
-                    //if (Integrite.id_integ.Equals(null) || Integrite.nom_integ.Equals(null)
-                    //    || Integrite.date_creation_integ.Equals(null) || Integrite.descr_integ.Equals(null)
-                    //    || Integrite.score_integd.Equals(null) || Integrite.errorMessage != null)
-                    //{
-                    //    Integrite.errorMessage = "no";
-                    //}
+                //if (Integrite.id_integ.Equals(null) || Integrite.nom_integ.Equals(null)
+                //    || Integrite.date_creation_integ.Equals(null) || Integrite.descr_integ.Equals(null)
+                //    || Integrite.score_integd.Equals(null) || IntegriteerrorMessage != null)
+                //{
+                //    IntegriteerrorMessage = "no";
+                //}
 
-                    db.integrite.Add(Integrite);
-                    //db.SaveChanges();
+                db.integrite.Add(Integrite);
+                db.SaveChanges();
 
                     //Last Insetrded ID
                     int LastIntegId = Integrite.id_integ;
@@ -241,15 +246,15 @@ namespace SMSI_ISO27005.Controllers
                     Disponibilte.date_creation_dispo = DateTime.Now; /*model.disponibilteDetailles.date_creation_dispo;*/
                     Disponibilte.descr_dispo = model.disponibilteDetailles.descr_dispo;
                     Disponibilte.score_dispo = model.disponibilteDetailles.score_dispo;
-                    //if (Disponibilte.id_dispo.Equals(null) || Disponibilte.nom_dispo.Equals(null)
-                    //    || Disponibilte.date_creation_dispo.Equals(null) || Disponibilte.descr_dispo.Equals(null)
-                    //    || Disponibilte.score_dispo.Equals(null) || Disponibilte.errorMessage != null)
-                    //{
-                    //    Disponibilte.errorMessage = "no";
-                    //}
+                //if (Disponibilte.id_dispo.Equals(null) || Disponibilte.nom_dispo.Equals(null)
+                //    || Disponibilte.date_creation_dispo.Equals(null) || Disponibilte.descr_dispo.Equals(null)
+                //    || Disponibilte.score_dispo.Equals(null) || DisponibilteerrorMessage != null)
+                //{
+                //    DisponibilteerrorMessage = "no";
+                //}
 
-                    db.disponibilte.Add(Disponibilte);
-                    //db.SaveChanges();
+                db.disponibilte.Add(Disponibilte);
+                db.SaveChanges();
 
                     //Last Insetrded ID
                     int LastDispogId = Disponibilte.id_dispo;
@@ -263,28 +268,28 @@ namespace SMSI_ISO27005.Controllers
                     CID.id_integ = LastIntegId;
                     CID.id_dispo = LastDispogId;
 
-                    //if (CID.id_actif.Equals(null) || CID.id_activite.Equals(null)
-                    //    || CID.id_confid.Equals(null) || CID.id_integ.Equals(null)
-                    //    || CID.id_dispo.Equals(null) || CID.errorMessage != null)
-                    //{
-                    //    CID.errorMessage = "no";
-                    //}
+                //if (CID.id_actif.Equals(null) || CID.id_activite.Equals(null)
+                //    || CID.id_confid.Equals(null) || CID.id_integ.Equals(null)
+                //    || CID.id_dispo.Equals(null) || CIDerrorMessage != null)
+                //{
+                //    CIDerrorMessage = "no";
+                //}
 
-                    var exists = db.CID_actif.Where(x => x.id_actif == CID.id_actif
+                var exists = db.CID_actif.Where(x => x.id_actif == CID.id_actif
                     && x.id_activite == CID.id_activite).FirstOrDefault();
 
                 //if (exists != null
-                //    && CID.errorMessage != "no" && Confid.errorMessage != "no"
-                //    && Integrite.errorMessage != "no" && Disponibilte.errorMessage != "no"
+                //    && CIDerrorMessage != "no" && ConfiderrorMessage != "no"
+                //    && IntegriteerrorMessage != "no" && DisponibilteerrorMessage != "no"
                 //    )
                 //{
                 //    //CID.errorMessage = "ok";
                 //    TempData["SucccesMessage"] = "Nope";
                 //    return View(model);
                 //}
-                //else if (exists == null 
-                //    && CID.errorMessage != "no" && Confid.errorMessage != "no"
-                //    && Integrite.errorMessage != "no" && Disponibilte.errorMessage != "no"
+                //else if (exists == null
+                //    && CIDerrorMessage != "no" && ConfiderrorMessage != "no"
+                //    && IntegriteerrorMessage != "no" && DisponibilteerrorMessage != "no"
                 //    )
                 //{
                 //    TempData["SucccesMessage"] = "Bien Ajouter";
@@ -293,15 +298,28 @@ namespace SMSI_ISO27005.Controllers
                 //    return View(model);
 
                 //}
-                db.CID_actif.Add(CID);
-                db.SaveChanges();
-                return View(model);
+                if (exists != null)
+                {
+                    //CID.errorMessage = "ok";
+                    TempData["SucccesMessage"] = "Nope";
+                    return View(model);
+                }
+                else 
+                {
+                    TempData["SucccesMessage"] = "Bien Ajouter";
+                    db.CID_actif.Add(CID);
+                    db.SaveChanges();
+                    model = null;
+                    return RedirectToAction("CID");
+
+                }
+
 
 
                 //return RedirectToAction("CID");
                 //} ModelState
 
-                //return View(model);
+                return View(model);
             }
 
 
